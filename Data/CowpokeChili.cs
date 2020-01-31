@@ -1,92 +1,59 @@
-﻿using System;
+﻿/*
+ * Author: Nathan Bean
+ * Editor: Zachery Brunner
+ * File: CowpokeChili.cs
+ * Purpose: Information about the menu item CowpokeChili
+ */
 using System.Collections.Generic;
 
 namespace CowboyCafe.Data
 {
-    /// <summary>
-    /// A class representing the Cowpoke Chili entree
-    /// </summary>
     public class CowpokeChili
     {
-        private bool cheese = true;
         /// <summary>
-        /// If the chili is topped with cheese
+        /// CowpokeChili Price
         /// </summary>
-        public bool Cheese
-        {
-            get { return cheese; }
-            set { cheese = value; }
-        }
-
-        private bool sourCream = true;
-        /// <summary>
-        /// If the chili is topped with sour cream
-        /// </summary>
-        public bool SourCream
-        {
-            get { return sourCream; }
-            set { sourCream = value; }
-        }
-
-        private bool greenOnions = true;
-        /// <summary>
-        /// If the chili is topped with green onions
-        /// </summary>
-        public bool GreenOnions
-        {
-            get { return greenOnions; }
-            set { greenOnions = value; }
-        }
-
-        private bool tortillaStrips = true;
-        /// <summary>
-        /// If the chili is topped with tortilla strips
-        /// </summary>
-        public bool TortillaStrips
-        {
-            get { return tortillaStrips; }
-            set { tortillaStrips = value; }
-        }
+        public double Price { get { return 6.10; } }
 
         /// <summary>
-        /// The price of the chili
+        /// CowpokeChili Calorie Count
         /// </summary>
-        public double Price
-        {
-            get
-            {
-                return 6.10;
-            }
-        }
+        public uint Calories { get { return 171; } }
 
         /// <summary>
-        /// The calories of the chili
+        /// Serve cheese with CowpokeChili?
         /// </summary>
-        public uint Calories
-        {
-            get
-            {
-                return 171;
-            }
-        }
+        public bool Cheese { get; set; } = true;
 
         /// <summary>
-        /// Special instructions for the preparation of the chili
+        /// Serve sourCream with CowpokeChili?
+        /// </summary>
+        public bool SourCream { get; set; } = true;
+
+        /// <summary>
+        /// Serve greenOnions with CowpokeChili?
+        /// </summary>
+        public bool GreenOnions { get; set; } = true;
+
+        /// <summary>
+        /// Serve tortillaStrips with CowpokeChili?
+        /// </summary>
+        public bool TortillaStrips { get; set; } = true;
+
+        /// <summary>
+        /// Perparation instructions for CowpokeChili
         /// </summary>
         public List<string> SpecialInstructions
         {
             get
             {
-                var instructions = new List<string>();
-
-                if (!cheese) instructions.Add("hold cheese");
-                if (!sourCream) instructions.Add("hold sour cream");
-                if (!greenOnions) instructions.Add("hold green onions");
-                if (!tortillaStrips) instructions.Add("hold tortilla strips");
-
+                List<string> instructions = new List<string>();
+                if (!Cheese) instructions.Add("hold cheese");
+                if (!SourCream) instructions.Add("hold sour cream");
+                if (!GreenOnions) instructions.Add("hold green onions");
+                if (!TortillaStrips) instructions.Add("hold tortilla strips");
                 return instructions;
             }
         }
     }
 }
-
