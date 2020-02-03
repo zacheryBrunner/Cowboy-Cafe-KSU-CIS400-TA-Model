@@ -60,8 +60,4 @@ namespace CowboyCafe.DataTests
             Assert.Contains("hold bread", chicken.SpecialInstructions);
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 39f23923651db4dafe6dbb705759ce97d16ca5cc
