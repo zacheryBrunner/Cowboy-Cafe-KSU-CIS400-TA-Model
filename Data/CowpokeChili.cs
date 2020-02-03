@@ -8,17 +8,17 @@ using System.Collections.Generic;
 
 namespace CowboyCafe.Data
 {
-    public class CowpokeChili
+    public class CowpokeChili : Entree
     {
         /// <summary>
         /// CowpokeChili Price
         /// </summary>
-        public double Price { get { return 6.10; } }
+        public override double Price { get { return 6.10; } }
 
         /// <summary>
         /// CowpokeChili Calorie Count
         /// </summary>
-        public uint Calories { get { return 171; } }
+        public override uint Calories { get { return 171; } }
 
         /// <summary>
         /// Serve cheese with CowpokeChili?
@@ -43,7 +43,7 @@ namespace CowboyCafe.Data
         /// <summary>
         /// Perparation instructions for CowpokeChili
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

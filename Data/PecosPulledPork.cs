@@ -7,17 +7,17 @@ using System.Collections.Generic;
 
 namespace CowboyCafe.Data
 {
-    public class PecosPulledPork
+    public class PecosPulledPork : Entree
     {
         /// <summary>
         /// Pecos Pulled Pork Price
         /// </summary>
-        public double Price { get { return 5.88; } }
+        public override double Price { get { return 5.88; } }
 
         /// <summary>
         /// Pecos Pulled Pork Calorie Count
         /// </summary>
-        public uint Calories { get { return 528; } }
+        public override uint Calories { get { return 528; } }
 
         /// <summary>
         /// Serve bread with Pecos Pulled Pork?
@@ -32,7 +32,7 @@ namespace CowboyCafe.Data
         /// <summary>
         /// Preparation instructions for Pecos Pulled Pork
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

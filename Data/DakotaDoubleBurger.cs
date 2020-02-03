@@ -7,17 +7,17 @@ using System.Collections.Generic;
 
 namespace CowboyCafe.Data
 {
-    public class DakotaDoubleBurger
+    public class DakotaDoubleBurger : Entree
     {
         /// <summary>
         /// Dakota Double Burger Price
         /// </summary>
-        public double Price { get { return 5.20; } }
+        public override double Price { get { return 5.20; } }
 
         /// <summary>
         /// Dakota Double Burger Calorie Count
         /// </summary>
-        public uint Calories { get { return 464; } }
+        public override uint Calories { get { return 464; } }
 
         /// <summary>
         /// Serve bread with Dakota Double Burger?
@@ -61,7 +61,7 @@ namespace CowboyCafe.Data
         /// <summary>
         /// Preparation instructions for Dakota Double Burger
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

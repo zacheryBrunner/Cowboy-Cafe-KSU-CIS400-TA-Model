@@ -1,19 +1,16 @@
-﻿using System;
+﻿/*
+ * Author: Zachery Brunner
+ * Class: Entree.cs
+ * Purpose: A base class representing an entree
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CowboyCafe.Data
 {
-    /// <summary>
-    /// A base class representing a side
-    /// </summary>
-    public abstract class Side
+    public abstract class Entree
     {
-        /// <summary>
-        /// Gets the size of the side
-        /// </summary>
-        public virtual Size Size { get; set; }
-
         /// <summary>
         /// Gets the price of the side
         /// </summary>
@@ -23,5 +20,10 @@ namespace CowboyCafe.Data
         /// Gets the calories of the entree
         /// </summary>
         public abstract uint Calories { get; }
+        
+        /// <summary>
+        /// Gets the special instructions for the entree
+        /// </summary>
+        public abstract List<string> SpecialInstructions { get; }
     }
 }

@@ -7,18 +7,18 @@ using System.Collections.Generic;
 
 namespace CowboyCafe.Data
 {
-    public class TexasTripleBurger
+    public class TexasTripleBurger : Entree
     {
 
         /// <summary>
         /// Texas Triple Burger Price
         /// </summary>
-        public double Price { get { return 6.45; } }
+        public override double Price { get { return 6.45; } }
 
         /// <summary>
         /// Texas Triple Burger Calorie Count
         /// </summary>
-        public uint Calories { get { return 698; } }
+        public override uint Calories { get { return 698; } }
 
         /// <summary>
         /// Serve bread with Texas Triple Burger?
@@ -72,7 +72,7 @@ namespace CowboyCafe.Data
         /// <summary>
         /// Preparation instructions for Texas Triple Burger
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
