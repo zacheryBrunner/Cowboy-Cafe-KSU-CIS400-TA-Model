@@ -1,65 +1,76 @@
-﻿/*
+﻿/* 
  * Author: Zachery Brunner
- * File: DakotaDoubleBurger.cs
- * Purpose: Information about the menu item Dakota Double Burger
+ * Class: TexasTripleBurger.cs
+ * Purpose: Information about the menu item Texas Triple Burger
  */
 using System.Collections.Generic;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Entrees
 {
-    public class DakotaDoubleBurger : Entree
+    public class TexasTripleBurger : Entree
     {
-        /// <summary>
-        /// Dakota Double Burger Price
-        /// </summary>
-        public override double Price { get { return 5.20; } }
 
         /// <summary>
-        /// Dakota Double Burger Calorie Count
+        /// Texas Triple Burger Price
         /// </summary>
-        public override uint Calories { get { return 464; } }
+        public override double Price { get { return EntreeInformation.TEXAS_TRIPLE_PRICE; } }
 
         /// <summary>
-        /// Serve bread with Dakota Double Burger?
+        /// Texas Triple Burger Calorie Count
+        /// </summary>
+        public override uint Calories { get { return EntreeInformation.TEXAS_TRIPLE_CALORIES; } }
+
+        /// <summary>
+        /// Serve bread with Texas Triple Burger?
         /// </summary>
         public bool Bun { get; set; } = true;
 
         /// <summary>
-        /// Serve ketchup with Dakota Double Burger?
+        /// Serve ketchup with Texas Triple Burger?
         /// </summary>
         public bool Ketchup { get; set; } = true;
 
         /// <summary>
-        /// Serve mustard with Dakota Double Burger?
+        /// Serve mustard with Texas Triple Burger?
         /// </summary>
         public bool Mustard { get; set; } = true;
 
         /// <summary>
-        /// Serve pickle with Dakota Double Burger?
+        /// Serve pickle with Texas Triple Burger?
         /// </summary>
         public bool Pickle { get; set; } = true;
 
         /// <summary>
-        /// Serve cheese with Dakota Double Burger?
+        /// Serve cheese with Texas Triple Burger?
         /// </summary>
         public bool Cheese { get; set; } = true;
         /// <summary>
-        /// Serve tomato with Dakota Double Burger?
+        /// Serve tomato with Texas Triple Burger?
         /// </summary>
         public bool Tomato { get; set; } = true;
 
         /// <summary>
-        /// Serve pickle with Dakota Double Burger?
+        /// Serve pickle with Texas Triple Burger?
         /// </summary>
         public bool Lettuce { get; set; } = true;
 
         /// <summary>
-        /// Serve pickle with Dakota Double Burger?
+        /// Serve pickle with Texas Triple Burger?
         /// </summary>
         public bool Mayo { get; set; } = true;
 
         /// <summary>
-        /// Preparation instructions for Dakota Double Burger
+        /// Serve bacon with Texas Triple Burger?
+        /// </summary>
+        public bool Bacon { get; set; } = true;
+        
+        /// <summary>
+        /// Serve egg with Texas Triple Burger?
+        /// </summary>
+        public bool Egg { get; set; } = true;
+        
+        /// <summary>
+        /// Preparation instructions for Texas Triple Burger
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -74,6 +85,8 @@ namespace CowboyCafe.Data
                 if (!Tomato) instructions.Add("hold tomato");
                 if (!Lettuce) instructions.Add("hold lettuce");
                 if (!Mayo) instructions.Add("hold mayo");
+                if (!Bacon) instructions.Add("hold bacon");
+                if (!Egg) instructions.Add("hold egg");
                 return instructions;
             }
         }

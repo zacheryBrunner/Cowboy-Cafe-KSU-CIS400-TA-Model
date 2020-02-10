@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Author: Zachery Brunner
+ * Class: Side.cs
+ * Purpose: Base class for sides served by the cowboy-cafe
+ */
+using CowboyCafe.Data.Enums;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Sides
 {
     /// <summary>
     /// A base class representing a side

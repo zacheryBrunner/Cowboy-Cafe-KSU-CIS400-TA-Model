@@ -4,8 +4,9 @@
  * Purpose: A blueprint of the side CornDodgers side for the cowboy diner
  */
 using System;
+using CowboyCafe.Data.Enums;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Sides
 {
     public class CornDodgers : Side
     {
@@ -19,11 +20,11 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 1.59;
+                        return SideInformation.SMALL_CORN_DODGERS_PRICE;
                     case Size.Medium:
-                        return 1.79;
+                        return SideInformation.MEDIUM_CORN_DODGERS_PRICE;
                     case Size.Large:
-                        return 1.99;
+                        return SideInformation.LARGE_CORN_DODGERS_PRICE;
                     default:
                         throw new NotImplementedException("Unknown size");
                 }
@@ -40,11 +41,11 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 512;
+                        return SideInformation.SMALL_CORN_DODGERS_CALORIES;
                     case Size.Medium:
-                        return 685;
+                        return SideInformation.MEDIUM_CORN_DODGERS_CALORIES;
                     case Size.Large:
-                        return 717;
+                        return SideInformation.LARGE_CORN_DODGERS_CALORIES;
                     default:
                         throw new NotImplementedException("Unknown size");
                 }

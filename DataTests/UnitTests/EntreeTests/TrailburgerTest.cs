@@ -1,37 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using Xunit;
-using CowboyCafe.Data;
+﻿using Xunit;
+using CowboyCafe.Data.Entrees;
 
-namespace CowboyCafe.DataTests
+namespace CowboyCafe.DataTests.UnitTests.EntreeTests
 {
-    public class TexasTripleBurgerTest
+    public class TrailBurgerTest
     {
         [Fact]
         public void DefaultPriceShouldBeCorrect()
         {
-            var burger = new TexasTripleBurger();
-            Assert.Equal(6.45, burger.Price);
+            var burger = new TrailBurger();
+            Assert.Equal(4.50, burger.Price);
         }
 
         [Fact]
         public void DefaultCaloriesShouldBeCorrect()
         {
-            var burger = new TexasTripleBurger();
-            Assert.Equal<uint>(698, burger.Calories);
+            var burger = new TrailBurger();
+            Assert.Equal<uint>(288, burger.Calories);
         }
 
         [Fact]
         public void DefaultSpecialInstructionsShouldBeEmpty()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             Assert.Empty(burger.SpecialInstructions);
         }
 
         [Fact]
         public void HoldingBunShouldAddInstruction()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Bun = false;
             Assert.Collection(burger.SpecialInstructions, instruction =>
             {
@@ -42,7 +40,7 @@ namespace CowboyCafe.DataTests
         [Fact]
         public void HoldingKetchupShouldAddInstruction()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Ketchup = false;
             Assert.Collection(burger.SpecialInstructions, instruction =>
             {
@@ -53,7 +51,7 @@ namespace CowboyCafe.DataTests
         [Fact]
         public void HoldingMustardShouldAddInstruction()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Mustard = false;
             Assert.Collection(burger.SpecialInstructions, instruction =>
             {
@@ -64,7 +62,7 @@ namespace CowboyCafe.DataTests
         [Fact]
         public void HoldingPickleShouldAddInstruction()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Pickle = false;
             Assert.Collection(burger.SpecialInstructions, instruction =>
             {
@@ -75,7 +73,7 @@ namespace CowboyCafe.DataTests
         [Fact]
         public void HoldingCheeseShouldAddInstruction()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Cheese = false;
             Assert.Collection(burger.SpecialInstructions, instruction =>
             {
@@ -84,64 +82,9 @@ namespace CowboyCafe.DataTests
         }
 
         [Fact]
-        public void HoldingMayoShouldAddInstruction()
-        {
-            var burger = new TexasTripleBurger();
-            burger.Mayo = false;
-            Assert.Collection(burger.SpecialInstructions, instruction =>
-            {
-                Assert.Equal("hold mayo", instruction);
-            });
-        }
-
-        [Fact]
-        public void HoldingLettuceShouldAddInstruction()
-        {
-            var burger = new TexasTripleBurger();
-            burger.Lettuce = false;
-            Assert.Collection(burger.SpecialInstructions, instruction =>
-            {
-                Assert.Equal("hold lettuce", instruction);
-            });
-        }
-
-        [Fact]
-        public void HoldingTomatoShouldAddInstruction()
-        {
-            var burger = new TexasTripleBurger();
-            burger.Tomato = false;
-            Assert.Collection(burger.SpecialInstructions, instruction =>
-            {
-                Assert.Equal("hold tomato", instruction);
-            });
-        }
-
-        [Fact]
-        public void HoldingBaconShouldAddInstruction()
-        {
-            var burger = new TexasTripleBurger();
-            burger.Bacon = false;
-            Assert.Collection(burger.SpecialInstructions, instruction =>
-            {
-                Assert.Equal("hold bacon", instruction);
-            });
-        }
-
-        [Fact]
-        public void HoldingEggShouldAddInstruction()
-        {
-            var burger = new TexasTripleBurger();
-            burger.Egg = false;
-            Assert.Collection(burger.SpecialInstructions, instruction =>
-            {
-                Assert.Equal("hold egg", instruction);
-            });
-        }
-
-        [Fact]
         public void HoldingKetchupAndMustardShouldAddTwoInstructions()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Ketchup = false;
             burger.Mustard = false;
             Assert.Contains("hold ketchup", burger.SpecialInstructions);
@@ -151,7 +94,7 @@ namespace CowboyCafe.DataTests
         [Fact]
         public void HoldingBunCheeseAndPickleShouldAddThreeInstructions()
         {
-            var burger = new TexasTripleBurger();
+            var burger = new TrailBurger();
             burger.Bun = false;
             burger.Cheese = false;
             burger.Pickle = false;

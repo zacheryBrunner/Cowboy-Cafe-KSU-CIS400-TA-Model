@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using CowboyCafe.Data;
+using CowboyCafe.Data.Entrees;
 
-namespace CowboyCafe.DataTests
+namespace CowboyCafe.DataTests.UnitTests.EntreeTests
 {
-    public class EntreeTests
+    public class EntreeTest
     {
         [Theory]
         [InlineData(typeof(CowpokeChili))]

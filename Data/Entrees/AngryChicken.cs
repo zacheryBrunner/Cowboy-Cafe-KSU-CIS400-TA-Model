@@ -1,36 +1,36 @@
 ﻿/* 
  * Author: Zachery Brunner
- * Class: PecosPulledPork.cs
- * Purpose: Information about the menu item Pecos Pulled Pork
+ * Class: AngryChicken.cs
+ * Purpose: Information about the menu item Angry Chicken
  */
-using System.Collections.Generic;
+ using System.Collections.Generic;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Entrees
 {
-    public class PecosPulledPork : Entree
+    public class AngryChicken : Entree
     {
         /// <summary>
-        /// Pecos Pulled Pork Price
+        /// Angry Chicken Price
         /// </summary>
-        public override double Price { get { return 5.88; } }
+        public override double Price { get { return EntreeInformation.ANGRY_CHICKEN_PRICE; } }
 
         /// <summary>
-        /// Pecos Pulled Pork Calorie Count
+        /// Angry Chicken Calorie Count
         /// </summary>
-        public override uint Calories { get { return 528; } }
+        public override uint Calories { get { return EntreeInformation.ANGRY_CHICKEN_CALORIES; } }
 
         /// <summary>
-        /// Serve bread with Pecos Pulled Pork?
+        /// Serve bread with Angry Chicken?
         /// </summary>
         public bool Bread { get; set; } = true;
 
         /// <summary>
-        /// Serve pickle with Pecos Pulled Pork?
+        /// Serve pickle with Angry Chicken?
         /// </summary>
         public bool Pickle { get; set; } = true;
 
         /// <summary>
-        /// Preparation instructions for Pecos Pulled Pork
+        /// The special instructions for preparing the angry chicken
         /// </summary>
         public override List<string> SpecialInstructions
         {

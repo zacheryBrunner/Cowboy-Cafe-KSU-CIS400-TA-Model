@@ -1,16 +1,17 @@
 ﻿/*
  * Author: Zachery Brunner
- * Class: PanDeCampo.cs
- * Purpose: A blueprint of the side PanDeCampo side for the cowboy diner
+ * Class: BakedBeans.cs
+ * Purpose: A blueprint of the side BakedBeans side for the cowboy diner
  */
 using System;
+using CowboyCafe.Data.Enums;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Sides
 {
-    public class PanDeCampo : Side
+    public class BakedBeans : Side
     {
         /// <summary>
-        /// Returns the price for the PanDeCampo side depending on the size of the entree
+        /// Returns the price for the BakedBeans side depending on the size of the entree
         /// </summary>
         public override double Price
         {
@@ -19,11 +20,11 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 1.59;
+                        return SideInformation.SMALL_BAKED_BEANS_PRICE;
                     case Size.Medium:
-                        return 1.79;
+                        return SideInformation.MEDIUM_BAKED_BEANS_PRICE;
                     case Size.Large:
-                        return 1.99;
+                        return SideInformation.LARGE_BAKED_BEANS_PRICE;
                     default:
                         throw new NotImplementedException("Unknown size");
                 }
@@ -31,7 +32,7 @@ namespace CowboyCafe.Data
         }
 
         /// <summary>
-        /// Returns the calories for the PanDeCampo side depending on the size of the entree
+        /// Returns the calories for the BakedBeans side depending on the size of the entree
         /// </summary>
         public override uint Calories
         {
@@ -40,11 +41,11 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 227;
+                        return SideInformation.SMALL_BAKED_BEANS_CALORIES;
                     case Size.Medium:
-                        return 269;
+                        return SideInformation.MEDIUM_BAKED_BEANS_CALORIES;
                     case Size.Large:
-                        return 367;
+                        return SideInformation.LARGE_BAKED_BEANS_CALORIES;
                     default:
                         throw new NotImplementedException("Unknown size");
 

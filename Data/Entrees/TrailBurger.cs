@@ -5,19 +5,19 @@
  */
 using System.Collections.Generic;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Entrees
 {
     public class TrailBurger : Entree
     {
         /// <summary>
         /// Trailburger Price
         /// </summary>
-        public override double Price { get { return 4.50; } }
+        public override double Price { get { return EntreeInformation.TRAIL_BURGER_PRICE; } }
 
         /// <summary>
         /// Trailburger Calorie Count
         /// </summary>
-        public override uint Calories { get { return 288; } }
+        public override uint Calories { get { return EntreeInformation.TRAIL_BURGER_CALORIES; } }
 
         /// <summary>
         /// Serve bread with Trailburger?

@@ -1,18 +1,17 @@
 ﻿/*
  * Author: Zachery Brunner
- * Class: BakedBeans.cs
- * Purpose: A blueprint of the side BakedBeans side for the cowboy diner
+ * Class: PanDeCampo.cs
+ * Purpose: A blueprint of the side PanDeCampo side for the cowboy diner
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
+using CowboyCafe.Data.Enums;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Sides
 {
-    public class BakedBeans : Side
+    public class PanDeCampo : Side
     {
         /// <summary>
-        /// Returns the price for the BakedBeans side depending on the size of the entree
+        /// Returns the price for the PanDeCampo side depending on the size of the entree
         /// </summary>
         public override double Price
         {
@@ -21,11 +20,11 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 1.59;
+                        return SideInformation.SMALL_PANDECAMPO_PRICE;
                     case Size.Medium:
-                        return 1.79;
+                        return SideInformation.MEDIUM_PANDECAMPO_PRICE;
                     case Size.Large:
-                        return 1.99;
+                        return SideInformation.LARGE_PANDECAMPO_PRICE;
                     default:
                         throw new NotImplementedException("Unknown size");
                 }
@@ -33,7 +32,7 @@ namespace CowboyCafe.Data
         }
 
         /// <summary>
-        /// Returns the calories for the BakedBeans side depending on the size of the entree
+        /// Returns the calories for the PanDeCampo side depending on the size of the entree
         /// </summary>
         public override uint Calories
         {
@@ -42,14 +41,13 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 312;
+                        return SideInformation.SMALL_PANDECAMPO_CALORIES;
                     case Size.Medium:
-                        return 378;
+                        return SideInformation.MEDIUM_PANDECAMPO_CALORIES;
                     case Size.Large:
-                        return 410;
+                        return SideInformation.LARGE_PANDECAMPO_CALORIES;
                     default:
                         throw new NotImplementedException("Unknown size");
-
                 }
             }
         }

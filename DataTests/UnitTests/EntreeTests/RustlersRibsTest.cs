@@ -1,7 +1,7 @@
 ﻿using Xunit;
-using CowboyCafe.Data;
+using CowboyCafe.Data.Entrees;
 
-namespace CowboyCafe.DataTests
+namespace CowboyCafe.DataTests.UnitTests.EntreeTests
 {
     public class RustlersRibsTest
     {

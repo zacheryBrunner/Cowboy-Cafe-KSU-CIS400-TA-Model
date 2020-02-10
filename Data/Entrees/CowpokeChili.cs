@@ -6,19 +6,19 @@
  */
 using System.Collections.Generic;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Entrees
 {
     public class CowpokeChili : Entree
     {
         /// <summary>
         /// CowpokeChili Price
         /// </summary>
-        public override double Price { get { return 6.10; } }
+        public override double Price { get { return EntreeInformation.COWPOKE_CHILI_PRICE; } }
 
         /// <summary>
         /// CowpokeChili Calorie Count
         /// </summary>
-        public override uint Calories { get { return 171; } }
+        public override uint Calories { get { return EntreeInformation.COWPOKE_CHILI_CALORIES; } }
 
         /// <summary>
         /// Serve cheese with CowpokeChili?

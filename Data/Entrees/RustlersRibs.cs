@@ -5,19 +5,19 @@
  */
 using System.Collections.Generic;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Entrees
 {
     public class RustlersRibs : Entree
     {
         /// <summary>
         /// Rustlers Ribs Price
         /// </summary>
-        public override double Price { get { return 7.50; } }
+        public override double Price { get { return EntreeInformation.RUSTLERS_RIBS_PRICE; } }
 
         /// <summary>
         /// Rustlers Ribs Calorie Count
         /// </summary>
-        public override uint Calories { get { return 894; } }
+        public override uint Calories { get { return EntreeInformation.RUSTLERS_RIBS_CALORIES; } }
 
         /// <summary>
         /// Preparation instructions for Rustler's Ribs 

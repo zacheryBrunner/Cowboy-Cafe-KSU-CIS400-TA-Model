@@ -4,8 +4,9 @@
  * Purpose: A blueprint of the side ChiliCheeseFries side for the cowboy diner
  */
 using System;
+using CowboyCafe.Data.Enums;
 
-namespace CowboyCafe.Data
+namespace CowboyCafe.Data.Sides
 {
     public class ChiliCheeseFries : Side
     {
@@ -19,11 +20,11 @@ namespace CowboyCafe.Data
                 switch (Size)
                 {
                     case Size.Small:
-                        return 1.99;
+                        return SideInformation.SMALL_CHILI_CHEESE_FRIES_PRICE;
                     case Size.Medium:
-                        return 2.99;
+                        return SideInformation.MEDIUM_CHILI_CHEESE_FRIES_PRICE;
                     case Size.Large:
-                        return 3.99;
+                        return SideInformation.LARGE_CHILI_CHEESE_FRIES_PRICE;
                     default:
                         throw new NotImplementedException("Unknown size");
                 }
@@ -40,11 +41,11 @@ namespace CowboyCafe.Data
                 switch(Size)
                 {
                     case Size.Small:
-                        return 433;
+                        return SideInformation.SMALL_CHILI_CHEESE_FRIES_CALORIES;
                     case Size.Medium:
-                        return 524;
+                        return SideInformation.MEDIUM_CHILI_CHEESE_FRIES_CALORIES;
                     case Size.Large:
-                        return 610;
+                        return SideInformation.LARGE_CHILI_CHEESE_FRIES_CALORIES;
                     default:
                         throw new NotImplementedException("Unknown size");
 
