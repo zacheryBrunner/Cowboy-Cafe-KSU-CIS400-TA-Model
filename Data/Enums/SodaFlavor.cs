@@ -5,11 +5,11 @@
  */
 namespace CowboyCafe.Data.Enums
 {
-    public enum DrinkFlavors
+    public enum SodaFlavor
     {
         CreamSoda,
-        OrangeSode,
-        Sarsaparilla,
+        OrangeSoda,
+        Sarsparilla,
         BirchBeer,
         RootBeer
     }

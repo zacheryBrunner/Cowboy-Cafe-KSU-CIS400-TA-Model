@@ -21,18 +21,18 @@ namespace CowboyCafe.Data.Drinks
         public abstract uint Calories { get; }
 
         /// <summary>
+        /// Used to represent whether ice should be included in the drink
+        /// </summary>
+        public abstract bool Ice { get; set; }
+
+        /// <summary>
         /// Gets the ingredients of the drink
         /// </summary>
-        public abstract List<string> Ingredients { get; }
+        public abstract List<string> SpecialInstructions { get; }
 
         /// <summary>
         /// Gets the size of the drink, default is small
         /// </summary>
         public virtual Size Size { get; set; } = Size.Small;
-
-        /// <summary>
-        /// Used to represent whether ice should be included in the drink
-        /// </summary>
-        public bool Ice = true;
     }
 }

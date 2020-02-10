@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using CowboyCafe.Data;
-/*
-namespace CowboyCafe.DataTests
+using CowboyCafe.Data.Drinks;
+using CowboyCafe.Data.Enums;
+
+namespace CowboyCafe.DataTests.UnitTests.DrinkTests
 {
     public class JerkedSodaTest
     {
@@ -119,4 +118,3 @@ namespace CowboyCafe.DataTests
         }
     }
 }
-*/

@@ -1,14 +1,29 @@
-﻿using System;
+﻿/*
+ * Author: Zachery Brunner
+ * Class: JerkedSoda.cs
+ * Purpose: Represents a drink option that the cowboy cafe has
+ */
+using System;
 using System.Collections.Generic;
-using System.Text;
 using CowboyCafe.Data.Enums;
 
 namespace CowboyCafe.Data.Drinks
 {
     public class JerkedSoda : Drink
     {
-        public DrinkFlavors Flavor { get; set; } = DrinkFlavors.CreamSoda;
-    
+        /// <summary>
+        /// Flavor enum used to determine the flavor the drink should be
+        /// </summary>
+        public SodaFlavor Flavor { get; set; } = SodaFlavor.CreamSoda;
+
+        /// <summary>
+        /// Used to represent if the drink should be served with ice
+        /// </summary>
+        public override bool Ice { get; set; } = true;
+
+        /// <summary>
+        /// Returns the price of the size of the jerked soda
+        /// </summary>
         public override double Price 
         { 
             get
@@ -27,6 +42,9 @@ namespace CowboyCafe.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// Returns the calories for the size of the drink
+        /// </summary>
         public override uint Calories
         {
             get
@@ -45,11 +63,14 @@ namespace CowboyCafe.Data.Drinks
             }
         }
 
-        public override List<string> Ingredients
+        /// <summary>
+        /// Creates a list of special instructions for the Jerked soda
+        /// </summary>
+        public override List<string> SpecialInstructions
         {
             get
             {
-                if (!Ice) return new List<string>() { "hold ice" };
+                if (!Ice) return new List<string>() { "Hold Ice" };
                 else return new List<string>();
             }
         }
