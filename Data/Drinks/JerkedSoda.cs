@@ -74,5 +74,35 @@ namespace CowboyCafe.Data.Drinks
                 else return new List<string>();
             }
         }
+
+        /// <summary>
+        /// Overrides the toString method
+        /// </summary>
+        /// <returns>String representation of the class with the size and flavor</returns>
+        public override string ToString()
+        {
+            string flavor;
+            switch(Flavor)
+            {
+                case SodaFlavor.BirchBeer:
+                    flavor = "Birch Beer";
+                    break;
+                case SodaFlavor.CreamSoda:
+                    flavor = "Cream Soda";
+                    break;
+                case SodaFlavor.OrangeSoda:
+                    flavor = "Orange Soda";
+                    break;
+                case SodaFlavor.RootBeer:
+                    flavor = "Root Beer";
+                    break;
+                case SodaFlavor.Sarsparilla:
+                    flavor = "Sarsparilla";
+                    break;
+                default:
+                    throw new NotImplementedException("Unknown flavor");
+            }
+            return Size.ToString() + " " + flavor + " Jerked Soda";
+        }
     }
 }

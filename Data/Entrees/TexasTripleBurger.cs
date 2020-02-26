@@ -9,7 +9,6 @@ namespace CowboyCafe.Data.Entrees
 {
     public class TexasTripleBurger : Entree
     {
-
         /// <summary>
         /// Texas Triple Burger Price
         /// </summary>
@@ -89,6 +88,15 @@ namespace CowboyCafe.Data.Entrees
                 if (!Egg) instructions.Add("hold egg");
                 return instructions;
             }
+        }
+
+        /// <summary>
+        /// Overrides the toString method
+        /// </summary>
+        /// <returns>String representation of the class</returns>
+        public override string ToString()
+        {
+            return "Texas Triple Burger";
         }
     }
 }

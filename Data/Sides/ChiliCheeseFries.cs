@@ -52,5 +52,14 @@ namespace CowboyCafe.Data.Sides
                 }
             }
         }
+
+        /// <summary>
+        /// Overrides the toString method
+        /// </summary>
+        /// <returns>String representation of the class with the size</returns>
+        public override string ToString()
+        {
+            return Size.ToString() + " Chili Cheese Fries";
+        }
     }
 }

@@ -60,5 +60,14 @@ namespace CowboyCafe.Data.Entrees
                 return instructions;
             }
         }
+
+        /// <summary>
+        /// Overrides the toString method
+        /// </summary>
+        /// <returns>String representation of the class</returns>
+        public override string ToString()
+        {
+            return "Trail Burger";
+        }
     }
 }

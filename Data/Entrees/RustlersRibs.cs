@@ -23,5 +23,14 @@ namespace CowboyCafe.Data.Entrees
         /// Preparation instructions for Rustler's Ribs 
         /// </summary>
         public override List<string> SpecialInstructions { get { return new List<string>(); } }
+
+        /// <summary>
+        /// Overrides the toString method
+        /// </summary>
+        /// <returns>String representation of the class</returns>
+        public override string ToString()
+        {
+            return "Rustler's Ribs";
+        }
     }
 }

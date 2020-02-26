@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using CowboyCafe.Data;
-/*
+using CowboyCafe.Data.Sides;
+
 namespace CowboyCafe.DataTests
 {
     public class SideTests
@@ -21,4 +19,4 @@ namespace CowboyCafe.DataTests
         }
     }
 }
-*/
+
