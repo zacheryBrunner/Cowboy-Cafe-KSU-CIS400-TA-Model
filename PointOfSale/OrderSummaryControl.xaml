@@ -81,12 +81,23 @@
                                    FontFamily="Cambria" 
                                    FontWeight="DemiBold" 
                                    HorizontalAlignment="Left" 
-                                   TextAlignment="Center"/>
+                                   TextAlignment="Center"
+                                   Margin="0 0 10 0"/>
                             </Grid>
 
                             <!--Build what the special instruction items are suppose to look like-->
                             <Grid Grid.Row="1">
+                                
+                                <!--Define the columns needed for the second row-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="240"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!--Listview that will hold the special instructions-->
                                 <ListBox x:Name="OrderListView"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
                                     Grid.Column="0"
                                     Background="#906b53" 
                                     Foreground="#5DADEC"
@@ -103,6 +114,19 @@
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
+                                
+                                <!--This button is included in every item and will process the removing of an item-->
+                                <Button x:Name="DeleteItemButton" 
+                                        Click="DeleteItemButton_Click" 
+                                        Background="Red" 
+                                        Content="X" 
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        FontSize="15" 
+                                        Foreground="Black" 
+                                        HorizontalAlignment="Right" 
+                                        Width="40" 
+                                        Grid.Column="1"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

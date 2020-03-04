@@ -22,12 +22,12 @@ namespace CowboyCafe.Data.Entrees
         /// <summary>
         /// Serve bread with Angry Chicken?
         /// </summary>
-        public bool Bread { get; set; } = false;
+        public bool Bread { get; set; } = true;
 
         /// <summary>
         /// Serve pickle with Angry Chicken?
         /// </summary>
-        public bool Pickle { get; set; } = false;
+        public bool Pickle { get; set; } = true;
 
         /// <summary>
         /// The special instructions for preparing the angry chicken

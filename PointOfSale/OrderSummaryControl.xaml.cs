@@ -22,5 +22,10 @@ namespace PointOfSale
         {
             InitializeComponent();
         }
+
+        private void DeleteItemButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
