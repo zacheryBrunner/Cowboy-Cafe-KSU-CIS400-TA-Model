@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CowboyCafe.Data.Entrees
 {
-    public abstract class Entree
+    public abstract class Entree : IOrderItem
     {
         /// <summary>
         /// Gets the price of the side

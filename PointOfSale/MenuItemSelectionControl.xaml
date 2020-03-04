@@ -1,0 +1,175 @@
+﻿<!--
+    Author: Zachery Brunner
+    Class: MenuItemSelectionControl.xaml
+    Purpose: Holds the buttons for each of the menu items-->
+    
+    <UserControl x:Class="PointOfSale.MenuItemSelectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="600">
+        
+    <!--This is where I did most of the styling. Instead of styling
+            each TargetType individually you can define a general style 
+            that TargetTypes will use-->
+    <UserControl.Resources>
+        
+        <!--Styling for TextBlocks-->
+        <Style TargetType="TextBlock">
+            <!--Set height and width-->
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="200"/>
+
+            <!--Font-->
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+
+            <!--Color scheme-->
+            <Setter Property="Background" Value="#906b53"/>
+            <Setter Property="Foreground" Value="#5DADEC"/>
+
+            <!--Text Alignment-->
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <!--Styling for Buttons-->
+        <Style TargetType="Button">
+            <!--Height and width options for buttons-->
+            <Setter Property="Height" Value="75"/>
+            <Setter Property="Width" Value="200"/>
+
+            <!--Alignment-->
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
+            <!-- Background is main color of the button
+            Foreground is the color of the text within the button -->
+            <Setter Property="Background" Value="#906b53"/>
+            <!--This is the hex for leather-->
+            <Setter Property="Foreground" Value="#5DADEC"/>
+            <!--This is the hex for blue jeans-->
+
+            <!--Everything to due with font here-->
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+
+            <!--Add a border to the buttons-->
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+
+            <!--When the mouse is hovering over a button the colors become inverted-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5DADEC"/>
+                    <Setter Property="Foreground" Value="#906b53"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Styling for Listviews-->
+        <Style TargetType="ListView">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+    </UserControl.Resources>
+        
+    <!--Define the grid for the control-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Entree stack panel-->
+        <StackPanel x:Name="EntreesStackPanel" 
+                    Grid.Column="0">
+
+            <!--The headbar for the Entrees-->
+            <TextBlock Text="Entrees"/>
+
+            <!--Entree Buttons-->
+            <Button x:Name="AngryChickenButton" 
+                    Content="Angry&#x0a;Chicken" 
+                    Click="addEntreeToList"/>
+
+            <Button x:Name="CowpokeChiliButton" 
+                    Content="Cowpoke&#x0a;Chili" 
+                    Click="addEntreeToList"/>
+
+            <Button x:Name="DakotaDoubleButton" 
+                    Content="Dakota&#x0a;Double" 
+                    Click="addEntreeToList"/>
+
+            <Button x:Name="PecosPulledPorkButton" 
+                    Content="Pecos&#x0a;Pulled Pork" 
+                    Click="addEntreeToList"/>
+
+            <Button x:Name="RustlersRibsButton" 
+                    Content="Rustlers&#x0a;Ribs" 
+                    Click="addEntreeToList"/>
+
+            <Button x:Name="TexasTripleButton" 
+                    Content="Texas&#x0a;Triple" 
+                    Click="addEntreeToList"/>
+
+            <Button x:Name="TrailBurgerButton" 
+                    Content="Trail&#x0a;Burger" 
+                    Click="addEntreeToList"/>
+        </StackPanel>
+
+
+        <!--Stack Panel for sides-->
+        <StackPanel x:Name="SidesStackPanel"
+                    Grid.Column="1">
+
+            <!--Headbar for sides-->
+            <TextBlock Text="Sides"/>
+
+            <!--Side Buttons-->
+            <Button x:Name="BakedBeansButton"
+                    Content="Baked&#x0a;Beans"
+                    Click="addSideToList"/>
+
+            <Button x:Name="ChiliCheeseFriesButton"
+                    Content="Chili&#x0a;Cheese Fries"
+                    Click="addSideToList"/>
+
+            <Button x:Name="CornDodgersButton"
+                    Content="Corn&#x0a;Dodgers"
+                    Click="addSideToList"/>
+
+            <Button x:Name="PanDeCampoButton"
+                    Content="Pan De&#x0a;Campo"
+                    Click="addSideToList"/>
+        </StackPanel>
+
+
+        <!--Stack panel for drinks-->
+        <StackPanel x:Name="DrinksStackPanel" 
+                    Grid.Column="2">
+
+            <!--The headbar for drinks-->
+            <TextBlock Text="Drinks"/>
+
+            <!--Drink Buttons-->
+            <Button x:Name="CowboyCoffeeButton"
+                    Content="Cowboy&#x0a;Coffe"
+                    Click="addDrinkToList"/>
+
+            <Button x:Name="JerkedSodaButton"
+                    Content="Jerked&#x0a;Soda"
+                    Click="addDrinkToList"/>
+
+            <Button x:Name="TexasTeaButton"
+                    Content="Texas&#x0a;Tea"
+                    Click="addDrinkToList"/>
+
+            <Button x:Name="WaterButton"
+                    Content="Water"
+                    Click="addDrinkToList"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
