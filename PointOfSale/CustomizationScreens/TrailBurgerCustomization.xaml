@@ -1,0 +1,135 @@
+﻿<!--
+    Author: Zachery Brunner
+    Class: TexasTripleCustomization.xaml
+    Purpose: xaml for the customization page of trail burger-->
+    <UserControl x:Class="PointOfSale.CustomizationScreens.TrailBurgerCustomization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.CustomizationScreens"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="600">
+    
+    <!--Styling section of the class-->
+    <UserControl.Resources>
+        <!--Styling for buttons-->
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="110"/>
+
+            <!--Font-->
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
+        <!--Styling for Textblocks-->
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="110"/>
+
+            <!--Font-->
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="30"/>
+
+            <!--Alignment-->
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!--Styling for labels-->
+        <Style TargetType="Label">
+            <!--Where does it go?-->
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+
+            <!--Font-->
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="45"/>
+
+            <!--Alignment-->
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+
+            <!--Content-->
+            <Setter Property="Content" Value="Trail Burger Customization"/>
+        </Style>
+    </UserControl.Resources>
+    <!--End of styling section-->
+    
+    <!--Start of the grid-->    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="TrailBurgerCustomizationLabel"/>
+        <!--Bun-->
+        <Button x:Name="BunButton"
+                Grid.Column="0" 
+                Grid.Row="1"
+                Content="Bun"
+                Click="Button_Click"/>
+
+        <TextBlock x:Name="BunInformation"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="Not Holding Bun"/>
+
+        <!--Ketchup-->
+        <Button x:Name="KetchupButton"
+                Grid.Column="0" 
+                Grid.Row="2" 
+                Content="Ketchup" 
+                Click="Button_Click"/>
+
+        <TextBlock x:Name="KetchupInformation"
+                Grid.Column="1"
+                Grid.Row="2"
+                Text="Not Holding Ketchup"/>
+
+        <!--Mustard-->
+        <Button x:Name="MustardButton"
+                Grid.Column="0" 
+                Grid.Row="3" 
+                Content="Mustard"
+                Click="Button_Click"/>
+
+        <TextBlock x:Name="MustardInformation"
+                Grid.Column="1"
+                Grid.Row="3"
+                Text="Not Holding Mustard"/>
+
+        <!--Cheese-->
+        <Button x:Name="CheeseButton"
+                Grid.Column="0" 
+                Grid.Row="4" 
+                Content="Cheese"
+                Click="Button_Click"/>
+
+        <TextBlock x:Name="CheeseInformation"
+                Grid.Column="1"
+                Grid.Row="4"
+                Text="Not Holding Cheese"/>
+
+        <!--Pickle-->
+        <Button x:Name="PickleButton"
+                Grid.Column="0" 
+                Grid.Row="5" 
+                Content="Pickle"
+                Click="Button_Click"/>
+
+        <TextBlock x:Name="PickleInformation"
+                Grid.Column="1"
+                Grid.Row="5"
+                Text="Not Holding Pickle"/>
+    </Grid>
+</UserControl>

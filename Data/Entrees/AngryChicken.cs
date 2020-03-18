@@ -4,6 +4,7 @@
  * Purpose: Information about the menu item Angry Chicken
  */
  using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CowboyCafe.Data.Entrees
 {

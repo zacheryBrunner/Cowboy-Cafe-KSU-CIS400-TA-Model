@@ -16,7 +16,6 @@ namespace CowboyCafe.Data
         /// </summary>
         private List<IOrderItem> items;
 
-
         /// <summary>
         /// The list of the item prices on the currentn order
         /// </summary>
@@ -41,6 +40,17 @@ namespace CowboyCafe.Data
         /// Property to get the current order number
         /// </summary>
         public uint OrderNumber { get; private set; }
+
+        public IEnumerable<string> SpecialInstructions
+        { 
+            get
+            {
+                IOrderItem[] listOfOrderItems = (IOrderItem[])Items;
+                List<string> s = listOfOrderItems[listOfOrderItems.Length].SpecialInstructions;
+                return s.ToArray();
+            }
+        }
+
 
         /// <summary>
         /// This event will be invoked when a property relating to the order is changed
@@ -72,11 +82,7 @@ namespace CowboyCafe.Data
             /* Add the computed values to their respective lists */
             items.Add(i);
             itemPrices.Add(priceOfItemAsCurrency);
-
-            /* Invoke all events to ensure you don't miss anything */
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
+            InvokePropertyChanged();
         }
 
         /// <summary>
@@ -93,11 +99,16 @@ namespace CowboyCafe.Data
             /* Remove the computed values to their respective lists */
             items.Add(i);
             itemPrices.Add(priceOfItemAsCurrency);
+            InvokePropertyChanged();
+        }
 
+        public void InvokePropertyChanged()
+        {
             /* Invoke all events to ensure you don't miss anything */
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
         }
     }
 }

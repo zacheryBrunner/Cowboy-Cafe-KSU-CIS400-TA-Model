@@ -79,7 +79,9 @@
                 Click="CompleteOrderButton_Click"/>
 
             <!--Link in MenuItemSelectionControl-->
-            <local:MenuItemSelectionControl Grid.Row="1"/>
+            <Border Name="Container" Grid.Row="1">
+                <local:MenuItemSelectionControl/>
+            </Border>
         </Grid>
 
         <!--Link in OrderSummaryControl into Column 1-->

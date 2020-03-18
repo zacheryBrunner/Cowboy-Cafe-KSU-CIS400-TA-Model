@@ -31,8 +31,8 @@ namespace CowboyCafe.Data.Drinks
         public abstract List<string> SpecialInstructions { get; }
 
         /// <summary>
-        /// Gets the size of the drink, default is small
-        /// </summary>
+        /// Gets,sets the size of the drink, default is small
+        /// </summary>  
         public virtual Size Size { get; set; } = Size.Small;
     }
 }
