@@ -70,12 +70,13 @@ namespace PointOfSale.CustomizationScreens
                 //Size Cases
                 case "SmallButton":
                     tt.Size = Size.Small;
+                    linkToOrder.subtotalHelperFunction(tt, Size.Small);
                     break;
                 case "MediumButton":
-                    tt.Size = Size.Medium;
+                    linkToOrder.subtotalHelperFunction(tt, Size.Medium); 
                     break;
                 case "LargeButton":
-                    tt.Size = Size.Large;
+                    linkToOrder.subtotalHelperFunction(tt, Size.Large); 
                     break;
                 default:
                     throw new NotImplementedException("Unknown Texas Tea Toggle Button Pressed");

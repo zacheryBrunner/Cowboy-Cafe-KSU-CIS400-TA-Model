@@ -42,6 +42,7 @@ namespace PointOfSale.CustomizationScreens
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Side s;
+            Size size;
             if(DataContext is ChiliCheeseFries)
                 s = (ChiliCheeseFries)DataContext;
             else if(DataContext is CornDodgers)
@@ -56,17 +57,18 @@ namespace PointOfSale.CustomizationScreens
             {
                 //Size Cases
                 case "SmallButton":
-                    s.Size = Size.Small;
+                    size = Size.Small;
                     break;
                 case "MediumButton":
-                    s.Size = Size.Medium;
+                    size = Size.Medium;
                     break;
                 case "LargeButton":
-                    s.Size = Size.Large;
+                    size = Size.Large;
                     break;
                 default:
-                    throw new NotImplementedException("Unknown Water Toggle Button Pressed");
+                    throw new NotImplementedException("Unknown Size Button Pressed");
             }
+            linkToOrder.subtotalHelperFunction(s, size);
             linkToOrder.InvokePropertyChanged();
         }
     }

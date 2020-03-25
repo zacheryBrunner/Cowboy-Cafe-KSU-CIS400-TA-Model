@@ -74,13 +74,13 @@ namespace PointOfSale.CustomizationScreens
 
                 //Size Cases
                 case "SmallButton":
-                    js.Size = Size.Small;
+                    linkToOrder.subtotalHelperFunction(js, Size.Small);
                     break;
                 case "MediumButton":
-                    js.Size = Size.Medium;
+                    linkToOrder.subtotalHelperFunction(js, Size.Medium); 
                     break;
                 case "LargeButton":
-                    js.Size = Size.Large;
+                    linkToOrder.subtotalHelperFunction(js, Size.Large);
                     break;
                 default:
                     throw new NotImplementedException("Unknown Jerked Soda Toggle Button Pressed");

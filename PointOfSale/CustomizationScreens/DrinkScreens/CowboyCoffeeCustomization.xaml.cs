@@ -69,14 +69,11 @@ namespace PointOfSale.CustomizationScreens
 
                 //Size Cases
                 case "SmallButton":
-                    cc.Size = Size.Small;
-                    break;
+                    linkToOrder.subtotalHelperFunction(cc, Size.Small); break;
                 case "MediumButton":
-                    cc.Size = Size.Medium;
-                    break;
+                    linkToOrder.subtotalHelperFunction(cc, Size.Medium); break;
                 case "LargeButton":
-                    cc.Size = Size.Large;
-                    break;
+                    linkToOrder.subtotalHelperFunction(cc, Size.Large); break;
                 default:
                     throw new NotImplementedException("Unknown Cowboy Coffee Toggle Button Pressed");
             }

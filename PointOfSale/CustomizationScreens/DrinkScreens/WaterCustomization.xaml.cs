@@ -62,13 +62,13 @@ namespace PointOfSale.CustomizationScreens
 
                 //Size Cases
                 case "SmallButton":
-                    w.Size = Size.Small;
+                    linkToOrder.subtotalHelperFunction(w, Size.Small);
                     break;
                 case "MediumButton":
-                    w.Size = Size.Medium;
+                    linkToOrder.subtotalHelperFunction(w, Size.Medium); 
                     break;
                 case "LargeButton":
-                    w.Size = Size.Large;
+                    linkToOrder.subtotalHelperFunction(w, Size.Large); 
                     break;
                 default:
                     throw new NotImplementedException("Unknown Water Toggle Button Pressed");
