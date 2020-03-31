@@ -4,13 +4,14 @@
  * Purpose: Allows customization for the texas tea
  */
 using System;
-
 using System.Windows;
 using System.Windows.Controls;
 
 using CowboyCafe.Data;
 using CowboyCafe.Data.Drinks;
 using Size = CowboyCafe.Data.Enums.Size;
+
+using PointOfSale.ExtensionMethods;
 
 namespace PointOfSale.CustomizationScreens
 {
@@ -20,17 +21,10 @@ namespace PointOfSale.CustomizationScreens
     public partial class TexasTeaCustomization : UserControl
     {
         /// <summary>
-        /// This variable is used so I can notify the properties have changed
-        /// </summary>
-        private Order linkToOrder;
-
-        /// <summary>
         /// Public constructor
         /// </summary>
-        /// <param name="dc">Datacontext: This is the overall order so I can trigger the special properties for the order</param>
-        public TexasTeaCustomization(object dc)
+        public TexasTeaCustomization()
         {
-            linkToOrder = (Order)dc;
             InitializeComponent();
         }
 
@@ -42,46 +36,58 @@ namespace PointOfSale.CustomizationScreens
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TexasTea tt = (TexasTea)DataContext;
+            var orderControl = this.FindAncestor<OrderControl>();
+
             switch (((Button)sender).Name)
             {
                 //Drink Customization Cases
+                //Ice
                 case "IceButton":
                     if (tt.Ice)
                         IceInformation.Text = "No Ice";
                     else
                         IceInformation.Text = "With Ice";
                     tt.Ice = !tt.Ice;
-                    break;
+                break;
+                
+                //Sweet
                 case "SweetButton":
                     if (tt.Sweet)
                         SweetInformation.Text = "Not Sweet";
                     else
                         SweetInformation.Text = "Sweet";
                     tt.Sweet = !tt.Sweet;
-                    break;
+                break;
+                
+                //Lemon
                 case "LemonButton":
                     if (tt.Lemon)
                         LemonInformation.Text = "No Lemon";
                     else
                         LemonInformation.Text = "With Lemon";
                     tt.Lemon = !tt.Lemon;
-                    break;
+                break;
+
 
                 //Size Cases
+                //Small
                 case "SmallButton":
-                    tt.Size = Size.Small;
-                    linkToOrder.subtotalHelperFunction(tt, Size.Small);
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(tt, Size.Small); break;
+
+                //Medium
                 case "MediumButton":
-                    linkToOrder.subtotalHelperFunction(tt, Size.Medium); 
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(tt, Size.Medium); break;
+                
+                //Large
                 case "LargeButton":
-                    linkToOrder.subtotalHelperFunction(tt, Size.Large); 
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(tt, Size.Large); break;
+                
+
+                //This should never be reached unless we add more buttons and forget to add the case statements ;P
                 default:
                     throw new NotImplementedException("Unknown Texas Tea Toggle Button Pressed");
             }
-            linkToOrder.InvokePropertyChanged();
+            ((Order)orderControl.DataContext).InvokePropertyChanged();
         }
     }
 }

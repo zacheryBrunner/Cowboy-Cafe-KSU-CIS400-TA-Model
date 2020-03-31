@@ -12,6 +12,8 @@ using CowboyCafe.Data;
 using CowboyCafe.Data.Drinks;
 using Size = CowboyCafe.Data.Enums.Size;
 
+using PointOfSale.ExtensionMethods;
+
 namespace PointOfSale.CustomizationScreens
 {
     /// <summary>
@@ -20,17 +22,10 @@ namespace PointOfSale.CustomizationScreens
     public partial class WaterCustomization : UserControl
     {
         /// <summary>
-        /// This variable is used so I can notify the properties have changed
-        /// </summary>
-        private Order linkToOrder;
-
-        /// <summary>
         /// Public constructor
         /// </summary>
-        /// <param name="dc">Datacontext: This is the overall order so I can trigger the special properties for the order</param>
-        public WaterCustomization(object dc)
+        public WaterCustomization()
         {
-            linkToOrder = (Order)dc;
             InitializeComponent();
         }
 
@@ -42,38 +37,48 @@ namespace PointOfSale.CustomizationScreens
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Water w = (Water)DataContext;
+            var orderControl = this.FindAncestor<OrderControl>();
+
             switch (((Button)sender).Name)
             {
                 //Drink Customization Cases
+                //Ice
                 case "IceButton":
                     if (w.Ice)
                         IceInformation.Text = "No Ice";
                     else
                         IceInformation.Text = "With Ice";
                     w.Ice = !w.Ice;
-                    break;
+                break;
+                
+                //Lemon
                 case "LemonButton":
                     if (w.Lemon)
                         LemonInformation.Text = "No Lemon";
                     else
                         LemonInformation.Text = "Lemon";
                     w.Lemon = !w.Lemon;
-                    break;
+                break;
+
 
                 //Size Cases
+                //Small
                 case "SmallButton":
-                    linkToOrder.subtotalHelperFunction(w, Size.Small);
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(w, Size.Small); break;
+
+                //Medium
                 case "MediumButton":
-                    linkToOrder.subtotalHelperFunction(w, Size.Medium); 
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(w, Size.Medium); break;
+                
+                //Large
                 case "LargeButton":
-                    linkToOrder.subtotalHelperFunction(w, Size.Large); 
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(w, Size.Large); break;
+                
+                //This case should never be reached unless we add more buttons and forget to add the switch cases ;P
                 default:
                     throw new NotImplementedException("Unknown Water Toggle Button Pressed");
             }
-            linkToOrder.InvokePropertyChanged();
+            ((Order)orderControl.DataContext).InvokePropertyChanged();
         }
     }
 }

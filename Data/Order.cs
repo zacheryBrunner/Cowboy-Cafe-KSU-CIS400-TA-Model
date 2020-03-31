@@ -2,7 +2,6 @@
  *Class: Order.cs
  *Purpose: This class represents a client at the cowboy cafe ordering a meal
  */
-
 using CowboyCafe.Data.Enums;
 using System;
 using System.Collections.Generic;
@@ -125,15 +124,18 @@ namespace CowboyCafe.Data
         {
             /* Do some computation here too to ensure everything is removed */
             double priceOfItem = i.Price;
-            string priceOfItemAsCurrency = String.Format("{0:C}", priceOfItem);
             Subtotal -= priceOfItem;
 
             /* Remove the computed values to their respective lists */
-            items.Add(i);
-            itemPrices.Add(priceOfItemAsCurrency);
+            int index = items.IndexOf(i);
+            items.Remove(i);
+            itemPrices.RemoveAt(index);
             InvokePropertyChanged();
         }
 
+        /// <summary>
+        /// Invokes all of the binding properties
+        /// </summary>
         public void InvokePropertyChanged()
         {
             /* Invoke all events to ensure you don't miss anything */

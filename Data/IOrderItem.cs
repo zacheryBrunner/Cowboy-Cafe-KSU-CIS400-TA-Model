@@ -16,6 +16,10 @@ namespace CowboyCafe.Data
         /// </summary>
         public double Price { get; }
 
+        /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public object screen { get; set; }
 
         /// <summary>
         /// Gets the list of special instructions for the current item

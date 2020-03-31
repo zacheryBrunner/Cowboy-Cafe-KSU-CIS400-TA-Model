@@ -29,6 +29,11 @@ namespace CowboyCafe.Data.Sides
         public abstract uint Calories { get; }
 
         /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public object screen { get; set; }
+
+        /// <summary>
         /// Special instructions for sides should we ever need to add some
         /// </summary>
         public List<string> SpecialInstructions { get { return new List<string>(); } }

@@ -23,6 +23,9 @@ namespace PointOfSale
     /// </summary>
     public partial class MenuItemSelectionControl : UserControl
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MenuItemSelectionControl()
         {
             InitializeComponent();
@@ -40,50 +43,67 @@ namespace PointOfSale
             //Ensure the DataContext is an Order and not NULL
             if (DataContext is Order data)
             {
+                //Ensure the sender is on of buttons
                 if (sender is Button)
                 {
                     IOrderItem item;
-                    FrameworkElement screen = null;
+                    FrameworkElement screen;
                     var orderControl = this.FindAncestor<OrderControl>();
 
-                    //Cast sender to button
-                    Button b = (Button)sender;
-
                     //Filter which button was pressed based on name
-                    switch (b.Name)
+                    switch (((Button)sender).Name)
                     {
+                        //Angry Chicken
                         case "AngryChickenButton":
                             item = new AngryChicken();
-                            screen = new AngryChickenCustomization(DataContext);
-                            break;
+                            screen = new AngryChickenCustomization();
+                        break;
+                        
+                        //Cowpoke Chili
                         case "CowpokeChiliButton":
                             item = new CowpokeChili();
-                            screen = new CowpokeChiliCustomization(DataContext);
-                            break;
+                            screen = new CowpokeChiliCustomization();
+                        break;
+                        
+                        //Dakota Double
                         case "DakotaDoubleButton":
                             item = new DakotaDoubleBurger();
-                            screen = new DakotaDoubleCustomization(DataContext);
-                            break;
+                            screen = new DakotaDoubleCustomization();
+                        break;
+
+                        //Pecos Pulled Pork
                         case "PecosPulledPorkButton":
                             item = new PecosPulledPork();
-                            screen = new PecosPulledPorkCustomization(DataContext);
-                            break;
+                            screen = new PecosPulledPorkCustomization();
+                        break;
+                        
+                        //Rustlers Ribs
                         case "RustlersRibsButton":
                             item = new RustlersRibs();
                             screen = new RustlersRibsCustomization();
-                            break;
+                        break;
+
+                        //Texas Triple
                         case "TexasTripleButton":
                             item = new TexasTripleBurger();
-                            screen = new TexasTripleCustomization(DataContext);
-                            break;
+                            screen = new TexasTripleCustomization();
+                        break;
+                        
+                        //Trail Burger
                         case "TrailBurgerButton":
                             item = new TrailBurger();
-                            screen = new TrailBurgerCustomization(DataContext);
-                            break;
+                            screen = new TrailBurgerCustomization();
+                        break;
+                        
+                        //Default case, should never be reached. Unless we expland our entree menu and forget to add the case statement ;P
                         default:
                             throw new NotImplementedException("Unknown entree button clicked");
                     }
-                    if(screen != null) screen.DataContext = item;
+                    //Set the datacontext of the screen to the item and set the items screen property equal to the screen
+                    screen.DataContext = item;
+                    item.screen = screen;
+                    
+                    //Add the item to the order and swap the screen
                     data.Add(item);
                     orderControl?.SwapScreen(screen);
                 }
@@ -102,35 +122,45 @@ namespace PointOfSale
             //Ensure the DataContext is an Order and not NULL
             if (DataContext is Order data)
             {
+                //Ensure the sender is on of buttons
                 if (sender is Button)
                 {
                     IOrderItem item;
-                    FrameworkElement screen = null;
+                    FrameworkElement screen = new SideSizeCustomization();
                     var orderControl = this.FindAncestor<OrderControl>();
 
-                    //Cast sender to button
-                    Button b = (Button)sender;
-
                     //Filter which button was pressed based on name
-                    switch (b.Name)
+                    switch (((Button)sender).Name)
                     {
+                        //Baked Beans
                         case "BakedBeansButton":
                             item = new BakedBeans();
-                            break;
+                        break;
+                        
+                        //Chili Cheese Fries
                         case "ChiliCheeseFriesButton":
                             item = new ChiliCheeseFries();
                             break;
+                        
+                        //Corn Dodgers
                         case "CornDodgersButton":
                             item = new CornDodgers();
-                            break;
+                        break;
+                        
+                        //Pan De Campo
                         case "PanDeCampoButton":
                             item = new PanDeCampo();
-                            break;
+                        break;
+                        
+                        //This should never be reached unless we add more sides and forget to add the case statements ;P
                         default:
                             throw new NotImplementedException("Unknown side button clicked");
                     }
-                    screen = new SideSizeCustomization(DataContext);
+                    //Set the datacontext of the screen to the item and set the items screen property equal to the screen
                     screen.DataContext = item;
+                    item.screen = screen;
+
+                    //Add the item to the order and swap the screen
                     data.Add(item);
                     orderControl?.SwapScreen(screen);
                 }
@@ -149,38 +179,49 @@ namespace PointOfSale
             //Ensure the DataContext is an Order and not NULL
             if (DataContext is Order data)
             {
+                //Ensure the sender is on of buttons
                 if (sender is Button)
                 {
                     IOrderItem item;
-                    FrameworkElement screen = null;
+                    FrameworkElement screen;
                     var orderControl = this.FindAncestor<OrderControl>();
 
-                    //Cast sender to button
-                    Button b = (Button)sender;
-
                     //Filter which button was pressed based on name
-                    switch (b.Name)
+                    switch (((Button)sender).Name)
                     {
+                        //Cowboy Coffee
                         case "CowboyCoffeeButton":
                             item = new CowboyCoffee();
-                            screen = new CowboyCoffeeCustomization(DataContext);
-                            break;
+                            screen = new CowboyCoffeeCustomization();
+                        break;
+                        
+                        //Jerked Soda
                         case "JerkedSodaButton":
                             item = new JerkedSoda();
-                            screen = new JerkedSodaCustomization(DataContext);
-                            break;
+                            screen = new JerkedSodaCustomization();
+                        break;
+                        
+                        //Texas Tea
                         case "TexasTeaButton":
                             item = new TexasTea();
-                            screen = new TexasTeaCustomization(DataContext);
-                            break;
+                            screen = new TexasTeaCustomization();
+                        break;
+                        
+                        //Water
                         case "WaterButton":
                             item = new Water();
-                            screen = new WaterCustomization(DataContext);
-                            break;
+                            screen = new WaterCustomization();
+                        break;
+
+                        //This should never be reached unless we add more sides and forget to add the case statements ;P
                         default:
                             throw new NotImplementedException("Unknown drink button clicked");
                     }
-                    if (screen != null) screen.DataContext = item;
+                    //Set the datacontext of the screen to the item and set the items screen property equal to the screen
+                    screen.DataContext = item;
+                    item.screen = screen;
+
+                    //Add the item to the order and swap the screen
                     data.Add(item);
                     orderControl?.SwapScreen(screen);
                 }

@@ -1,15 +1,21 @@
 ﻿/* 
  * Author: Zachery Brunner
  * Class: AngryChicken.cs
- * Purpose: Information about the menu item Angry Chicken
+ * Purpose: Model for the Angry Chicken menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
- using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace CowboyCafe.Data.Entrees
 {
-    public class AngryChicken : Entree
+    public class AngryChicken : Entree, INotifyPropertyChanged
     {
+        /// <summary>
+        /// This event will be invoked when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Angry Chicken Price
         /// </summary>
@@ -21,14 +27,54 @@ namespace CowboyCafe.Data.Entrees
         public override uint Calories { get { return EntreeInformation.ANGRY_CHICKEN_CALORIES; } }
 
         /// <summary>
-        /// Serve bread with Angry Chicken?
+        /// Private backing variable for the Bread property
         /// </summary>
-        public bool Bread { get; set; } = true;
+        private bool bread = true;
 
         /// <summary>
-        /// Serve pickle with Angry Chicken?
+        /// Interactive logic for if bread should be included
+        ///     with the angry chicken
+        ///     
+        /// Updates the Bread and the Special Instruction list on user click
         /// </summary>
-        public bool Pickle { get; set; } = true;
+        public bool Bread
+        {
+            get
+            {
+                return bread;
+            }
+            set
+            {
+                bread = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bread"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Pickle property
+        /// </summary>
+        private bool pickle = true;
+
+        /// <summary>
+        /// Interactive logic for if pickle should be included
+        ///     with the angry chicken    
+        ///     
+        /// Updates the Pickle and the Special Instruction list on user click
+        /// </summary>
+        public bool Pickle
+        {
+            get
+            {
+                return pickle;
+            }
+            set
+            {
+                pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
         /// The special instructions for preparing the angry chicken
@@ -45,7 +91,7 @@ namespace CowboyCafe.Data.Entrees
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class</returns>
         public override string ToString()

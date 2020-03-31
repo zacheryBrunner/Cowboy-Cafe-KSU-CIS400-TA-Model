@@ -4,13 +4,14 @@
  * Purpose: Allows customization for the cowboy coffee
  */
 using System;
-
 using System.Windows;
 using System.Windows.Controls;
 
 using CowboyCafe.Data;
 using CowboyCafe.Data.Drinks;
 using Size = CowboyCafe.Data.Enums.Size;
+
+using PointOfSale.ExtensionMethods;
 
 namespace PointOfSale.CustomizationScreens
 {
@@ -20,17 +21,10 @@ namespace PointOfSale.CustomizationScreens
     public partial class CowboyCoffeeCustomization : UserControl
     {
         /// <summary>
-        /// This variable is used so I can notify the properties have changed
-        /// </summary>
-        private Order linkToOrder;
-
-        /// <summary>
         /// Public constructor
         /// </summary>
-        /// <param name="dc">Datacontext: This is the overall order so I can trigger the special properties for the order</param>
-        public CowboyCoffeeCustomization(object dc)
+        public CowboyCoffeeCustomization()
         {
-            linkToOrder = (Order)dc;
             InitializeComponent();
         }
 
@@ -42,42 +36,57 @@ namespace PointOfSale.CustomizationScreens
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CowboyCoffee cc = (CowboyCoffee)DataContext;
+            var orderControl = this.FindAncestor<OrderControl>();
+
             switch (((Button)sender).Name)
             {
-                //Drink Customization Cases
+                //Option Cases
+                //Ice
                 case "IceButton":
                     if (cc.Ice)
                         IceInformation.Text = "No Ice";
                     else
                         IceInformation.Text = "With Ice";
                     cc.Ice = !cc.Ice;
-                    break;
+                break;
+                
+                //Decaf
                 case "DecafButton":
                     if (cc.Decaf)
                         DecafInformation.Text = "Not Decaf";
                     else
                         DecafInformation.Text = "Decaf";
                     cc.Decaf = !cc.Decaf;
-                    break;
+                break;
+                
+                //Cream
                 case "CreamButton":
                     if (cc.RoomForCream)
                         CreamInformation.Text = "No Cream";
                     else
                         CreamInformation.Text = "With Cream";
                     cc.RoomForCream = !cc.RoomForCream;
-                    break;
+                break;
+
 
                 //Size Cases
+                //Small
                 case "SmallButton":
-                    linkToOrder.subtotalHelperFunction(cc, Size.Small); break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(cc, Size.Small); break;
+
+                //Medium
                 case "MediumButton":
-                    linkToOrder.subtotalHelperFunction(cc, Size.Medium); break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(cc, Size.Medium); break;
+
+                //Large
                 case "LargeButton":
-                    linkToOrder.subtotalHelperFunction(cc, Size.Large); break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(cc, Size.Large); break;
+                
+                //This should never be reached unless we add more buttons and forget to add the case statements ;P
                 default:
                     throw new NotImplementedException("Unknown Cowboy Coffee Toggle Button Pressed");
             }
-            linkToOrder.InvokePropertyChanged();
+            ((Order)orderControl.DataContext).InvokePropertyChanged();
         }
     }
 }

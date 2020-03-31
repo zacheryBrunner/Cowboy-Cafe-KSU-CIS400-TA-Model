@@ -1,14 +1,21 @@
 ﻿/* 
  * Author: Zachery Brunner
  * Class: RustlersRibs.cs
- * Purpose: Information about the menu item Rustlers Ribs
+ * Purpose: Model for the Rustlers Ribs menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CowboyCafe.Data.Entrees
 {
-    public class RustlersRibs : Entree
+    public class RustlersRibs : Entree, INotifyPropertyChanged
     {
+        /// <summary>
+        /// This event will be invoked when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Rustlers Ribs Price
         /// </summary>
@@ -20,12 +27,12 @@ namespace CowboyCafe.Data.Entrees
         public override uint Calories { get { return EntreeInformation.RUSTLERS_RIBS_CALORIES; } }
 
         /// <summary>
-        /// Preparation instructions for Rustler's Ribs 
+        /// The special instructions for preparing the Rustler's Ribs 
         /// </summary>
         public override List<string> SpecialInstructions { get { return new List<string>(); } }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class</returns>
         public override string ToString()

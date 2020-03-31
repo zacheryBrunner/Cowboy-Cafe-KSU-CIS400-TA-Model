@@ -20,7 +20,12 @@ namespace CowboyCafe.Data.Entrees
         /// Gets the calories of the entree
         /// </summary>
         public abstract uint Calories { get; }
-        
+
+        /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public object screen { get; set; }
+
         /// <summary>
         /// Gets the special instructions for the entree
         /// </summary>

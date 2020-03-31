@@ -59,7 +59,8 @@
                   Grid.Column="0"
                   Background="#906b53" 
                   Foreground="#5DADEC"
-                  ItemsSource="{Binding Path=Items}">
+                  ItemsSource="{Binding Path=Items}"
+                  SelectionChanged="OrderListView_SelectionChanged">
 
                 <!--This is where you define what each item should look like-->
                 <ListBox.ItemTemplate>

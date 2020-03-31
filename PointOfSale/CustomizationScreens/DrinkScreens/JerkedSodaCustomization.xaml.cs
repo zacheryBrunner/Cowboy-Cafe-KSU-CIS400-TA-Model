@@ -4,7 +4,6 @@
  * Purpose: Allows customization for the cowboy coffee
  */
 using System;
-
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,6 +11,8 @@ using CowboyCafe.Data;
 using CowboyCafe.Data.Drinks;
 using Size = CowboyCafe.Data.Enums.Size;
 using Flavor = CowboyCafe.Data.Enums.SodaFlavor;
+
+using PointOfSale.ExtensionMethods;
 
 namespace PointOfSale.CustomizationScreens
 {
@@ -21,18 +22,10 @@ namespace PointOfSale.CustomizationScreens
     public partial class JerkedSodaCustomization : UserControl
     {
         /// <summary>
-        /// This variable is used so I can notify the properties have changed
-        /// </summary>
-        private Order linkToOrder;
-
-        /// <summary>
         /// Public constructor
         /// </summary>
-        /// <param name="dc">Datacontext: This is the overall order so I can trigger the special properties for the order</param>
-
-        public JerkedSodaCustomization(object dc)
+        public JerkedSodaCustomization()
         {
-            linkToOrder = (Order)dc;
             InitializeComponent();
         }
 
@@ -44,48 +37,62 @@ namespace PointOfSale.CustomizationScreens
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             JerkedSoda js = (JerkedSoda)DataContext;
+            var orderControl = this.FindAncestor<OrderControl>();
+
             switch (((Button)sender).Name)
             {
                 //Drink Customization Cases
+                //Ice
                 case "IceButton":
                     if (js.Ice)
                         IceInformation.Text = "No Ice";
                     else
                         IceInformation.Text = "With Ice";
                     js.Ice = !js.Ice;
-                    break;
+                break;
+
 
                 //Flavor Cases
+                //Orange Soda
                 case "OrangeSodaButton":
-                    js.Flavor = Flavor.OrangeSoda;
-                    break;
+                    js.Flavor = Flavor.OrangeSoda; break;
+
+                //Cream Soda
                 case "CreamSodaButton":
-                    js.Flavor = Flavor.CreamSoda;
-                    break;
+                    js.Flavor = Flavor.CreamSoda; break;
+
+                //Sarsparilla 
                 case "SarsparillaButton":
-                    js.Flavor = Flavor.Sarsparilla;
-                    break;
+                    js.Flavor = Flavor.Sarsparilla; break;
+
+                //Birch Beer
                 case "BirchBeerButton":
-                    js.Flavor = Flavor.BirchBeer;
-                    break;
+                    js.Flavor = Flavor.BirchBeer; break;
+
+                //Root Beer
                 case "RootBeerButton":
-                    js.Flavor = Flavor.RootBeer;
-                    break;
+                    js.Flavor = Flavor.RootBeer;break;
+
 
                 //Size Cases
+                //Small
                 case "SmallButton":
-                    linkToOrder.subtotalHelperFunction(js, Size.Small);
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(js, Size.Small); break;
+
+                //Medium
                 case "MediumButton":
-                    linkToOrder.subtotalHelperFunction(js, Size.Medium); 
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(js, Size.Medium); break;
+
+                //Large
                 case "LargeButton":
-                    linkToOrder.subtotalHelperFunction(js, Size.Large);
-                    break;
+                    ((Order)orderControl.DataContext).subtotalHelperFunction(js, Size.Large); break;
+
+
+                //Should never be reached unless we add more buttons and don't add the switch statements ;P
                 default:
                     throw new NotImplementedException("Unknown Jerked Soda Toggle Button Pressed");
             }
-            linkToOrder.InvokePropertyChanged();
+            ((Order)orderControl.DataContext).InvokePropertyChanged();
         }
     }
 }

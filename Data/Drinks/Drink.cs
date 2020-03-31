@@ -21,6 +21,11 @@ namespace CowboyCafe.Data.Drinks
         public abstract uint Calories { get; }
 
         /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public object screen { get; set; }
+
+        /// <summary>
         /// Used to represent whether ice should be included in the drink
         /// </summary>
         public abstract bool Ice { get; set; }

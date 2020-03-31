@@ -1,51 +1,157 @@
 ﻿/* 
  * Author: Zachery Brunner
  * Class: Trailburger.cs
- * Purpose: Information about the menu item Trailburger
+ * Purpose: Model for the trail burger menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CowboyCafe.Data.Entrees
 {
-    public class TrailBurger : Entree
+    public class TrailBurger : Entree, INotifyPropertyChanged
     {
         /// <summary>
-        /// Trailburger Price
+        /// This event will be invoked when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Trail Burger Price
         /// </summary>
         public override double Price { get { return EntreeInformation.TRAIL_BURGER_PRICE; } }
 
         /// <summary>
-        /// Trailburger Calorie Count
+        /// Trail Burger Calorie Count
         /// </summary>
         public override uint Calories { get { return EntreeInformation.TRAIL_BURGER_CALORIES; } }
 
         /// <summary>
-        /// Serve bread with Trailburger?
+        /// Private backing variable for the Bun property
         /// </summary>
-        public bool Bun { get; set; } = true;
+        private bool bun = true;
 
         /// <summary>
-        /// Serve ketchup with Trailburger?
+        /// Interactive logic for if bun should be included
+        ///     with the trail burger
+        ///     
+        /// Updates the Bun and the Special Instruction list on user click
         /// </summary>
-        public bool Ketchup { get; set; } = true;
+        public bool Bun
+        {
+            get
+            {
+                return bun;
+            }
+            set
+            {
+                bun = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Serve mustard with Trailburger?
+        /// Private backing variable for the Ketchup property
         /// </summary>
-        public bool Mustard { get; set; } = true;
+        private bool ketchup = true;
 
         /// <summary>
-        /// Serve pickle with Trailburger?
+        /// Interactive logic for if ketchup should be included
+        ///     with the trail burger
+        ///     
+        /// Updates the Ketchup and the Special Instruction list on user click
         /// </summary>
-        public bool Pickle { get; set; } = true;
+        public bool Ketchup
+        {
+            get
+            {
+                return ketchup;
+            }
+            set
+            {
+                ketchup = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Serve cheese with Trailburger?
+        /// Private backing variable for the Mustard property
         /// </summary>
-        public bool Cheese { get; set; } = true;
-        
+        private bool mustard = true;
+
         /// <summary>
-        /// Preparation instructions for Trailburger
+        /// Interactive logic for if mustard should be included
+        ///     with the trail burger
+        ///     
+        /// Updates the Mustard and the Special Instruction list on user click
+        /// </summary>
+        public bool Mustard
+        {
+            get
+            {
+                return mustard;
+            }
+            set
+            {
+                mustard = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Pickle property
+        /// </summary>
+        private bool pickle = true;
+
+        /// <summary>
+        /// Interactive logic for if pickle should be included
+        ///     with the trail burger   
+        ///     
+        /// Updates the Pickle and the Special Instruction list on user click
+        /// </summary>
+        public bool Pickle
+        {
+            get
+            {
+                return pickle;
+            }
+            set
+            {
+                pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Cheese property
+        /// </summary>
+        private bool cheese = true;
+
+        /// <summary>
+        /// Interactive logic for if cheese should be included
+        ///     with the trail burger
+        ///     
+        /// Updates the Cheese and the Special Instruction list on user click
+        /// </summary>
+        public bool Cheese
+        {
+            get
+            {
+                return cheese;
+            }
+            set
+            {
+                cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+        /// <summary>
+        /// The special instructions for preparing the trail burger
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -62,7 +168,7 @@ namespace CowboyCafe.Data.Entrees
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class</returns>
         public override string ToString()

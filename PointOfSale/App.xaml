@@ -4,5 +4,39 @@
              xmlns:local="clr-namespace:PointOfSale"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
+        <!--Styling for labels-->
+        <Style TargetType="Label">
+
+            <!--Where does it go?-->
+            <Setter Property="Grid.Row" Value="0"/>
+
+            <!--Font-->
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="45"/>
+
+            <!--Alignment-->
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!--Checkbox Styling-->
+        <Style TargetType="CheckBox">
+
+            <!--Font-->
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+
+            <!--Alignment-->
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            
+            <!--Make checkbox bigger-->
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

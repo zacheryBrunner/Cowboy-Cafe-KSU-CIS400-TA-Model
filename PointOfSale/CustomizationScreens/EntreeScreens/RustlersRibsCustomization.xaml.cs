@@ -12,6 +12,9 @@ namespace PointOfSale.CustomizationScreens
     /// </summary>
     public partial class RustlersRibsCustomization : UserControl
     {
+        /// <summary>
+        /// Public constructor
+        /// </summary>
         public RustlersRibsCustomization()
         {
             InitializeComponent();

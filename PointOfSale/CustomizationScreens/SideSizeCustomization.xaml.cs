@@ -12,6 +12,8 @@ using CowboyCafe.Data;
 using CowboyCafe.Data.Sides;
 using Size = CowboyCafe.Data.Enums.Size;
 
+using PointOfSale.ExtensionMethods;
+
 namespace PointOfSale.CustomizationScreens
 {
     /// <summary>
@@ -20,17 +22,10 @@ namespace PointOfSale.CustomizationScreens
     public partial class SideSizeCustomization : UserControl
     {
         /// <summary>
-        /// This variable is used so I can notify the properties have changed
-        /// </summary>
-        private Order linkToOrder;
-
-        /// <summary>
         /// Public constructor
         /// </summary>
-        /// <param name="dc">Datacontext: This is the overall order so I can trigger the special properties for the order</param>
-        public SideSizeCustomization(object dc)
+        public SideSizeCustomization()
         {
-            linkToOrder = (Order)dc;
             InitializeComponent();
         }
 
@@ -43,14 +38,27 @@ namespace PointOfSale.CustomizationScreens
         {
             Side s;
             Size size;
-            if(DataContext is ChiliCheeseFries)
+            var orderControl = this.FindAncestor<OrderControl>();
+
+            //Chili Cheese Fries
+            if (DataContext is ChiliCheeseFries)
                 s = (ChiliCheeseFries)DataContext;
-            else if(DataContext is CornDodgers)
+
+            //Corn Dodgers
+            else if (DataContext is CornDodgers)
                 s = (CornDodgers)DataContext;
-            else if(DataContext is PanDeCampo)
+
+            //Pan De Campo
+            else if (DataContext is PanDeCampo)
                 s = (PanDeCampo)DataContext;
-            else 
+
+            //Baked beans
+            else if (DataContext is BakedBeans)
                 s = (BakedBeans)DataContext;
+
+            //We don't know what it is.... Lets do nothing 
+            else
+                return;
       
 
             switch(((Button)sender).Name)
@@ -68,8 +76,8 @@ namespace PointOfSale.CustomizationScreens
                 default:
                     throw new NotImplementedException("Unknown Size Button Pressed");
             }
-            linkToOrder.subtotalHelperFunction(s, size);
-            linkToOrder.InvokePropertyChanged();
+            ((Order)orderControl.DataContext).subtotalHelperFunction(s, size);
+            ((Order)orderControl.DataContext).InvokePropertyChanged();
         }
     }
 }

@@ -1,65 +1,233 @@
 ﻿/*
  * Author: Zachery Brunner
  * File: DakotaDoubleBurger.cs
- * Purpose: Information about the menu item Dakota Double Burger
+ * Purpose: Model for the Dakota Double menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CowboyCafe.Data.Entrees
 {
-    public class DakotaDoubleBurger : Entree
+    public class DakotaDoubleBurger : Entree, INotifyPropertyChanged
     {
         /// <summary>
-        /// Dakota Double Burger Price
+        /// This event will be invoked when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Dakota Double Price
         /// </summary>
         public override double Price { get { return EntreeInformation.DAKOTA_DOUBLE_PRICE; } }
 
         /// <summary>
-        /// Dakota Double Burger Calorie Count
+        /// Dakota Double Calorie Count
         /// </summary>
         public override uint Calories { get { return EntreeInformation.DAKOTA_DOUBLE_CALORIES; } }
 
         /// <summary>
-        /// Serve bread with Dakota Double Burger?
+        /// Private backing variable for the Bun property
         /// </summary>
-        public bool Bun { get; set; } = true;
+        private bool bun = true;
 
         /// <summary>
-        /// Serve ketchup with Dakota Double Burger?
+        /// Interactive logic for if bun should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Bun and the Special Instruction list on user click
         /// </summary>
-        public bool Ketchup { get; set; } = true;
+        public bool Bun
+        {
+            get
+            {
+                return bun;
+            }
+            set
+            {
+                bun = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Serve mustard with Dakota Double Burger?
+        /// Private backing variable for the Ketchup property
         /// </summary>
-        public bool Mustard { get; set; } = true;
+        private bool ketchup = true;
 
         /// <summary>
-        /// Serve pickle with Dakota Double Burger?
+        /// Interactive logic for if ketchup should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Ketchup and the Special Instruction list on user click
         /// </summary>
-        public bool Pickle { get; set; } = true;
+        public bool Ketchup
+        {
+            get
+            {
+                return ketchup;
+            }
+            set
+            {
+                ketchup = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Serve cheese with Dakota Double Burger?
+        /// Private backing variable for the Mustard property
         /// </summary>
-        public bool Cheese { get; set; } = true;
-        /// <summary>
-        /// Serve tomato with Dakota Double Burger?
-        /// </summary>
-        public bool Tomato { get; set; } = true;
+        private bool mustard = true;
 
         /// <summary>
-        /// Serve pickle with Dakota Double Burger?
+        /// Interactive logic for if mustard should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Mustard and the Special Instruction list on user click
         /// </summary>
-        public bool Lettuce { get; set; } = true;
+        public bool Mustard
+        {
+            get
+            {
+                return mustard;
+            }
+            set
+            {
+                mustard = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Serve pickle with Dakota Double Burger?
+        /// Private backing variable for the Pickle property
         /// </summary>
-        public bool Mayo { get; set; } = true;
+        private bool pickle = true;
 
         /// <summary>
-        /// Preparation instructions for Dakota Double Burger
+        /// Interactive logic for if pickle should be included
+        ///     with the dakota double    
+        ///     
+        /// Updates the Pickle and the Special Instruction list on user click
+        /// </summary>
+        public bool Pickle
+        {
+            get
+            {
+                return pickle;
+            }
+            set
+            {
+                pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Cheese property
+        /// </summary>
+        private bool cheese = true;
+
+        /// <summary>
+        /// Interactive logic for if cheese should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Cheese and the Special Instruction list on user click
+        /// </summary>
+        public bool Cheese
+        {
+            get
+            {
+                return cheese;
+            }
+            set
+            {
+                cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Tomato property
+        /// </summary>
+        private bool tomato = true;
+
+        /// <summary>
+        /// Interactive logic for if tomato should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Tomato and the Special Instruction list on user click
+        /// </summary>
+        public bool Tomato
+        {
+            get
+            {
+                return tomato;
+            }
+            set
+            {
+                tomato = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Lettuce property
+        /// </summary>
+        private bool lettuce = true;
+
+        /// <summary>
+        /// Interactive logic for if lettuce should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Lettuce and the Special Instruction list on user click
+        /// </summary>
+        public bool Lettuce
+        {
+            get
+            {
+                return lettuce;
+            }
+            set
+            {
+                lettuce = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lettuce"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+        
+        /// <summary>
+        /// Private backing variable for the Mayo property
+        /// </summary>
+        private bool mayo = true;
+
+        /// <summary>
+        /// Interactive logic for if mayo should be included
+        ///     with the dakota double
+        ///     
+        /// Updates the Mayo and the Special Instruction list on user click
+        /// </summary>
+        public bool Mayo
+        {
+            get
+            {
+                return mayo;
+            }
+            set
+            {
+                mayo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mayo"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// The special instructions for preparing the dakota double
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -79,10 +247,9 @@ namespace CowboyCafe.Data.Entrees
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class</returns>
-
         public override string ToString()
         {
             return "Dakota Double Burger";

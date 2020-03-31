@@ -1,47 +1,133 @@
-﻿/*
- * Author: Nathan Bean
- * Editor: Zachery Brunner
- * File: CowpokeChili.cs
- * Purpose: Information about the menu item CowpokeChili
+﻿/* 
+ * Author: Zachery Brunner
+ * Class: CowpokeChili.cs
+ * Purpose: Model for the Cowpoke Chili menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CowboyCafe.Data.Entrees
 {
-    public class CowpokeChili : Entree
+    public class CowpokeChili : Entree, INotifyPropertyChanged
     {
         /// <summary>
-        /// CowpokeChili Price
+        /// This event will be invoked when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Cowpoke Chili Price
         /// </summary>
         public override double Price { get { return EntreeInformation.COWPOKE_CHILI_PRICE; } }
 
         /// <summary>
-        /// CowpokeChili Calorie Count
+        /// Cowpoke Chili Calorie Count
         /// </summary>
         public override uint Calories { get { return EntreeInformation.COWPOKE_CHILI_CALORIES; } }
 
         /// <summary>
-        /// Serve cheese with CowpokeChili?
+        /// Private backing variable for the Cheese property
         /// </summary>
-        public bool Cheese { get; set; } = true;
+        private bool cheese = true;
 
         /// <summary>
-        /// Serve sourCream with CowpokeChili?
+        /// Interactive logic for if cheese should be included
+        ///     with the cowpoke chili
+        ///     
+        /// Updates the Cheese and the Special Instruction list on user click
         /// </summary>
-        public bool SourCream { get; set; } = true;
+        public bool Cheese
+        {
+            get
+            {
+                return cheese;
+            }
+            set
+            {
+                cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Serve greenOnions with CowpokeChili?
+        /// Private backing variable for the SourCream property
         /// </summary>
-        public bool GreenOnions { get; set; } = true;
+        private bool sourCream = true;
 
         /// <summary>
-        /// Serve tortillaStrips with CowpokeChili?
+        /// Interactive logic for if sour cream should be included
+        ///     with the cowpoke chili
+        ///     
+        /// Updates the SourCream and the Special Instruction list on user click
         /// </summary>
-        public bool TortillaStrips { get; set; } = true;
+        public bool SourCream
+        {
+            get
+            {
+                return sourCream;
+            }
+            set
+            {
+                sourCream = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SourCream"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
 
         /// <summary>
-        /// Perparation instructions for CowpokeChili
+        /// Private backing variable for the GreenOnions property
+        /// </summary>
+        private bool greenOnions = true;
+
+        /// <summary>
+        /// Interactive logic for if green onions should be included
+        ///     with the cowpoke chili
+        ///     
+        /// Updates the GreenOnions and the Special Instruction list on user click
+        /// </summary>
+        public bool GreenOnions
+        {
+            get
+            {
+                return greenOnions;
+            }
+            set
+            {
+                greenOnions = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GreenOnions"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the TortillaStrips property
+        /// </summary>
+        private bool tortillaStrips = true;
+
+        /// <summary>
+        /// Interactive logic for if tortilla strips should be included
+        ///     with the cowpoke chili
+        ///     
+        /// Updates the TortillaStrips and the Special Instruction list on user click
+        /// </summary>
+        public bool TortillaStrips
+        {
+            get
+            {
+                return tortillaStrips;
+            }
+            set
+            {
+                tortillaStrips = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TortillaStrips"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// The special instructions for preparing the cowpoke chili
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -57,7 +143,7 @@ namespace CowboyCafe.Data.Entrees
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class</returns>
         public override string ToString()
