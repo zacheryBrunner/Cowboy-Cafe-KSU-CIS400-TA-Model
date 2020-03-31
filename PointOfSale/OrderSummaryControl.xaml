@@ -10,7 +10,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PointOfSale"
              mc:Ignorable="d" 
-             d:DesignHeight="725" d:DesignWidth="380">
+             d:DesignHeight="725" d:DesignWidth="420">
     <Grid>
         <!--Create 4 rows for the controls-->
         <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
               Background="#540B0C">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="270"/>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="170"/>
             </Grid.ColumnDefinitions>
 
             <!--Placeholder text-->
@@ -51,7 +51,7 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="270"/>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
             <!--This list box holds the items currently on the order-->

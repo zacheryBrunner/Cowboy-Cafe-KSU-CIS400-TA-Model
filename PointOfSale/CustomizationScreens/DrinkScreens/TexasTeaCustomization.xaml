@@ -18,9 +18,9 @@
         <Grid.RowDefinitions>
             <RowDefinition/> <!--Texas Tea Customization Label-->
             <RowDefinition/> <!--Ice-->
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition/> <!--Sweet-->
+            <RowDefinition/> <!--Lemon-->
+            <RowDefinition Height="270"/> <!--Size-->
         </Grid.RowDefinitions>
 
         <!--Texas Tea Customization Label-->
@@ -44,10 +44,8 @@
                   Grid.Row="3"
                   Content="INCLUDE LEMON"
                   IsChecked="{Binding Path=Lemon}"/>
-        <!--Size-->
-        
 
-            
-                                                                                        
+        <!--Size-->
+        <local:SizeChangingCustomization Grid.Row="4"/>
     </Grid>
 </UserControl>

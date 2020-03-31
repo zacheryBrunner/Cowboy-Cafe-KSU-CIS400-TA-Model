@@ -2,26 +2,49 @@
  *Class: Order.cs
  *Purpose: This class represents a client at the cowboy cafe ordering a meal
  */
-using CowboyCafe.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using CowboyCafe.Data.Drinks;
 using CowboyCafe.Data.Sides;
+using Size = CowboyCafe.Data.Enums.Size;
 
 namespace CowboyCafe.Data
 {
     public class Order : INotifyPropertyChanged
     {
         /// <summary>
+        /// This event will be invoked when a property relating to the order is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Invokes all of the binding properties
+        /// </summary>
+        public void InvokePropertyChanged()
+        {
+            /* Invoke all events to ensure you don't miss anything */
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+        }
+
+        /// <summary>
+        /// Property to get the current order number
+        /// </summary>
+        public uint OrderNumber { get; private set; }
+
+        /// <summary>
+        /// Property to get or set the subtotal of the current order
+        /// </summary>
+        public double Subtotal { get; private set; }
+
+        /// <summary>
         /// The list of the items on the current order
         /// </summary>
         private List<IOrderItem> items;
-
-        /// <summary>
-        /// The list of the item prices on the currentn order
-        /// </summary>
-        private List<string> itemPrices;
 
         /// <summary>
         /// Property to return the list of items in the current order
@@ -29,35 +52,14 @@ namespace CowboyCafe.Data
         public IEnumerable<IOrderItem> Items { get { return items.ToArray(); } }
 
         /// <summary>
+        /// The list of the item prices on the currentn order
+        /// </summary>
+        private List<string> itemPrices;
+
+        /// <summary>
         /// Property to return the list of item prices in the current order 
         /// </summary>
         public IEnumerable<string> ItemPrices { get { return itemPrices.ToArray(); } }
-        
-        /// <summary>
-        /// Property to get or set the subtotal of the current order
-        /// </summary>
-        public double Subtotal { get; private set; }
-
-        /// <summary>
-        /// Property to get the current order number
-        /// </summary>
-        public uint OrderNumber { get; private set; }
-
-        public IEnumerable<string> SpecialInstructions
-        { 
-            get
-            {
-                IOrderItem[] listOfOrderItems = (IOrderItem[])Items;
-                List<string> s = listOfOrderItems[listOfOrderItems.Length].SpecialInstructions;
-                return s.ToArray();
-            }
-        }
-
-
-        /// <summary>
-        /// This event will be invoked when a property relating to the order is changed
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Public constructor that initializes the list
@@ -80,40 +82,11 @@ namespace CowboyCafe.Data
             double priceOfItem = i.Price;
             string priceOfItemAsCurrency = String.Format("{0:C}", priceOfItem);
             Subtotal += priceOfItem;
-            
+
             /* Add the computed values to their respective lists */
             items.Add(i);
             itemPrices.Add(priceOfItemAsCurrency);
             InvokePropertyChanged();
-        }
-
-        /// <summary>
-        /// This method assists in updating the subtotal for changing sizes
-        /// </summary>
-        /// <param name="i">The item</param>
-        /// <param name="new_size">The size the item is suppose to be</param>
-        public void subtotalHelperFunction(IOrderItem i, Size new_size)
-        {
-            Side s;
-            Drink d;
-            
-            Subtotal -= i.Price;
-            if (i is Side)
-            {
-                s = (Side)i;
-                s.Size = new_size;
-                Subtotal += s.Price;
-            }
-            else
-            {
-                d = (Drink)i;
-                d.Size = new_size;
-                Subtotal += d.Price;
-            }
-            itemPrices.RemoveAt(itemPrices.Count - 1);
-
-            string priceOfItemAsCurrency = String.Format("{0:C}", i.Price);
-            itemPrices.Add(priceOfItemAsCurrency);
         }
 
         /// <summary>
@@ -134,15 +107,45 @@ namespace CowboyCafe.Data
         }
 
         /// <summary>
-        /// Invokes all of the binding properties
+        /// This method assists in updating the subtotal for changing sizes
         /// </summary>
-        public void InvokePropertyChanged()
+        /// <param name="i">The item</param>
+        /// <param name="new_size">The size the item is suppose to be</param>
+        public void subtotalHelperFunction(IOrderItem i, Size new_size)
         {
-            /* Invoke all events to ensure you don't miss anything */
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            Side s;
+            Drink d;
+
+            Subtotal -= i.Price;
+            if (i is Side)
+            {
+                s = (Side)i;
+                s.Size = new_size;
+                Subtotal += s.Price;
+            }
+            else
+            {
+                d = (Drink)i;
+                d.Size = new_size;
+                Subtotal += d.Price;
+            }
+            itemPrices.RemoveAt(itemPrices.Count - 1);
+
+            string priceOfItemAsCurrency = String.Format("{0:C}", i.Price);
+            itemPrices.Add(priceOfItemAsCurrency);
+        }
+
+        /// <summary>
+        /// The special instructions for the current order item
+        /// </summary>
+        public IEnumerable<string> SpecialInstructions
+        { 
+            get
+            {
+                IOrderItem[] listOfOrderItems = (IOrderItem[])Items;
+                List<string> s = listOfOrderItems[listOfOrderItems.Length].SpecialInstructions;
+                return s.ToArray();
+            }
         }
     }
 }

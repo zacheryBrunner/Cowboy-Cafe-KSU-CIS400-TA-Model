@@ -60,11 +60,48 @@ namespace CowboyCafe.Data.Drinks
                 }
             }
         }
+        
+        /// <summary>
+        /// Private backing variable for the Size Property
+        /// </summary>
+        private Size size = Size.Small;
 
         /// <summary>
-        /// Flavor enum used to determine the flavor the drink should be
+        /// Gets,sets the size of the drink
+        /// </summary>  
+        public override Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Flavor Property
         /// </summary>
-        public SodaFlavor Flavor { get; set; } = SodaFlavor.CreamSoda;
+        private SodaFlavor flavor = SodaFlavor.CreamSoda;
+
+        /// <summary>
+        /// Gets,sets the flavor of the drink
+        /// </summary>  
+        public SodaFlavor Flavor
+        {
+            get
+            {
+                return flavor;
+            }
+            set
+            {
+                flavor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
 
         /// <summary>
         /// Private backing variable for the Ice property

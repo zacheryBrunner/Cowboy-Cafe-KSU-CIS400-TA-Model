@@ -7,6 +7,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
+using CowboyCafe.Data.Enums;
+
 namespace CowboyCafe.Data.Drinks
 {
     public class Water : Drink, INotifyPropertyChanged
@@ -25,6 +27,27 @@ namespace CowboyCafe.Data.Drinks
         /// Water Calories
         /// </summary>
         public override uint Calories { get { return DrinkInformation.WATER_CALORIES; } }
+
+        /// <summary>
+        /// Private backing variable for the Size Property
+        /// </summary>
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// Gets,sets the size of the drink
+        /// </summary>  
+        public override Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
 
         /// <summary>
         /// Private backing variable for the Ice property

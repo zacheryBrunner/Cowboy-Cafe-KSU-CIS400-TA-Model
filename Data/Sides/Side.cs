@@ -26,7 +26,7 @@ namespace CowboyCafe.Data.Sides
         /// <summary>
         /// Gets the size of the side
         /// </summary>
-        public virtual Size Size { get; set; }
+        public abstract Size Size { get; set; }
 
         /// <summary>
         /// Gets the price of the side

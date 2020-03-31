@@ -126,7 +126,7 @@ namespace PointOfSale
                 if (sender is Button)
                 {
                     IOrderItem item;
-                    FrameworkElement screen = new SideSizeCustomization();
+                    FrameworkElement screen = new SizeChangingCustomization();
                     var orderControl = this.FindAncestor<OrderControl>();
 
                     //Filter which button was pressed based on name

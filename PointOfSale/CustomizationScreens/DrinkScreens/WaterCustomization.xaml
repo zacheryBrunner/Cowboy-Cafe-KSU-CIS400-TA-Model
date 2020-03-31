@@ -16,14 +16,10 @@
     <Grid>
         <!--4 Rows-->
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <!--Water Customization Label-->
-            <RowDefinition/>
-            <!--Ice-->
-            <RowDefinition/>
-            <!--Lemon-->
-            <RowDefinition/>
-            <!--Size-->
+            <RowDefinition/> <!--Water Customization Label-->
+            <RowDefinition/> <!--Ice-->
+            <RowDefinition/> <!--Lemon-->
+            <RowDefinition Height="270"/> <!--Size-->
         </Grid.RowDefinitions>
 
         <!--Water Customization Label-->
@@ -43,6 +39,6 @@
                   IsChecked="{Binding Path=Lemon}"/>
 
         <!--Size-->
-
+        <local:SizeChangingCustomization Grid.Row="3"/>
     </Grid>
 </UserControl>

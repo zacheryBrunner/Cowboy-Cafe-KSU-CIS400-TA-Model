@@ -62,6 +62,27 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
+        /// Private backing variable for the Size Property
+        /// </summary>
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// Gets,sets the size of the drink
+        /// </summary>  
+        public override Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        /// <summary>
         /// Private backing variable for the Ice property
         /// </summary>
         private bool ice = false;

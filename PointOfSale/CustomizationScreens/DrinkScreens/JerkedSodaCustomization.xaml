@@ -18,8 +18,8 @@
         <Grid.RowDefinitions>
             <RowDefinition/> <!--Jerked Soda Customization Label-->
             <RowDefinition/> <!--Ice-->
-            <RowDefinition/> <!--Flavor-->
-            <RowDefinition/> <!--Size-->
+            <RowDefinition Height="250"/> <!--Flavor-->
+            <RowDefinition Height="260"/> <!--Size-->
         </Grid.RowDefinitions>
         
         <!--Jerked Soda Customization Label-->
@@ -33,9 +33,9 @@
                   IsChecked="{Binding Path=Ice}"/>
 
         <!--Flavor-->
+        <local:FlavorChangingScreen Grid.Row="2"/>
 
         <!--Size-->
-
-
+        <local:SizeChangingCustomization Grid.Row="3"/>
     </Grid>
 </UserControl>

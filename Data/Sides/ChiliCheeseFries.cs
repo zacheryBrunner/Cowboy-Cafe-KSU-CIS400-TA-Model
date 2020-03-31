@@ -1,17 +1,25 @@
 ﻿/*
  * Author: Zachery Brunner
  * Class: ChiliCheeseFries.cs
- * Purpose: A blueprint of the side ChiliCheeseFries side for the cowboy diner
+ * Purpose: Model for the Baked Beans menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System;
+using System.ComponentModel;
+
 using CowboyCafe.Data.Enums;
 
 namespace CowboyCafe.Data.Sides
 {
-    public class ChiliCheeseFries : Side
+    public class ChiliCheeseFries : Side, INotifyPropertyChanged
     {
         /// <summary>
-        /// Returns the price for the ChiliCheeseFries side depending on the size of the entree
+        /// This event will be invoked when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Chili Cheese Fries Price - Based on size
         /// </summary>
         public override double Price
         {
@@ -32,7 +40,7 @@ namespace CowboyCafe.Data.Sides
         }
 
         /// <summary>
-        /// Returns the calories for the ChiliCheeseFries side depending on the size of the entree
+        /// Chili Cheese Fries Calorie Count - Based on size
         /// </summary>
         public override uint Calories
         {
@@ -48,13 +56,33 @@ namespace CowboyCafe.Data.Sides
                         return SideInformation.LARGE_CHILI_CHEESE_FRIES_CALORIES;
                     default:
                         throw new NotImplementedException("Unknown size");
-
                 }
             }
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Private backing variable for the Size Property
+        /// </summary>
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// Gets,sets the size of the drink
+        /// </summary>  
+        public override Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class with the size</returns>
         public override string ToString()

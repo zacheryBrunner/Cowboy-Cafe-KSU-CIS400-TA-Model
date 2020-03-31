@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PointOfSale"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
-        
         <!--Styling for labels-->
         <Style TargetType="Label">
 
@@ -35,6 +35,20 @@
             <Setter Property="LayoutTransform">
                 <Setter.Value>
                     <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="RadioButton">
+
+            <!--Font-->
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+
+            <!--Make checkbox bigger-->
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </Setter.Value>
             </Setter>
         </Style>

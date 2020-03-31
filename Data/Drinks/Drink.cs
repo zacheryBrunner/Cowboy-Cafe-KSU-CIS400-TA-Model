@@ -21,9 +21,9 @@ namespace CowboyCafe.Data.Drinks
         public virtual object Screen { get; set; }
 
         /// <summary>
-        /// Gets,sets the size of the drink, default is small
-        /// </summary>  
-        public virtual Size Size { get; set; } = Size.Small;
+        /// Size associated with the item
+        /// </summary>
+        public abstract Size Size { get; set; }
 
         /// <summary>
         /// Gets the price of the drink
