@@ -55,7 +55,7 @@
             </Grid.ColumnDefinitions>
 
             <!--This list box holds the items currently on the order-->
-            <ListBox x:Name="OrderListView"
+            <ListView x:Name="OrderListView"
                   Grid.Column="0"
                   Background="#906b53" 
                   Foreground="#5DADEC"
@@ -63,7 +63,7 @@
                   SelectionChanged="OrderListView_SelectionChanged">
 
                 <!--This is where you define what each item should look like-->
-                <ListBox.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <!--I break the items into two sections. 
@@ -76,7 +76,7 @@
 
                             <!--Build what the item is suppose to look like-->
                             <Grid Grid.Row="0">
-                                <TextBlock Text="{Binding}" 
+                                <TextBlock Text="{Binding Path=Name}" 
                                    Foreground="#5DADEC"
                                    FontSize="20" 
                                    FontFamily="Cambria" 
@@ -131,8 +131,8 @@
                             </Grid>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <!--We are still in row 1
                 This is where the price list on the rightside comes into play-->
@@ -188,7 +188,7 @@
             <!--This is just a thank you message commonly found at bottoms
                 of receipts-->
             <TextBlock x:Name="ThankYouForComing" 
-                   Text="Thank you for coming to the&#x0a;Cowboy Cafe! YEE HAW" 
+                   Text="Thank you for coming to the&#x0a;Cowboy Cafe! YEET SKEET" 
                    FontSize="30"        
                    FontFamily="Cambria"
                    Background="#540B0C" 

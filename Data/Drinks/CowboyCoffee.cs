@@ -1,33 +1,26 @@
 ﻿/*
  * Author: Zachery Brunner
  * Class: CowboyCoffee.cs
- * Purpose: Represents a drink option that the cowboy cafe offers
+ * Purpose: Model for the Cowboy Coffee menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+
 using CowboyCafe.Data.Enums;
 
 namespace CowboyCafe.Data.Drinks
 {
-    public class CowboyCoffee : Drink
+    public class CowboyCoffee : Drink, INotifyPropertyChanged
     {
         /// <summary>
-        /// Special property for the cowboy coffee to see if space needs to be left
+        /// This event will be invoked when a property is changed
         /// </summary>
-        public bool RoomForCream { get; set; } = false;
+        public event PropertyChangedEventHandler PropertyChanged;
         
         /// <summary>
-        /// Special property for the cowboy coffee to see if the drink should be decaf
-        /// </summary>
-        public bool Decaf { get; set; } = false;
-
-        /// <summary>
-        /// Used to represent if the drink should be served with ice
-        /// </summary>
-        public override bool Ice { get; set; } = false;
-
-        /// <summary>
-        /// Gets the price of the cowboy coffee using the size
+        /// Cowboy Coffee Price - Based on size
         /// </summary>
         public override double Price
         {
@@ -48,7 +41,7 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Gets the calories of the cowboy coffee using the size
+        /// Cowboy Coffee Calorie Count - Based on size
         /// </summary>
         public override uint Calories
         {
@@ -69,7 +62,82 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Creates a list of special instructions for the cowboy coffee
+        /// Private backing variable for the Ice property
+        /// </summary>
+        private bool ice = false;
+
+        /// <summary>
+        /// Interactive logic for if ice should be included
+        ///     with the cowboy coffee   
+        ///     
+        /// Updates the Ice and the Special Instruction list on user click
+        /// </summary>
+        public override bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Decaf property
+        /// </summary>
+        private bool decaf = false;
+
+        /// <summary>
+        /// Interactive logic for if decaf should be included
+        ///     with the cowboy coffee   
+        ///     
+        /// Updates the Decaf and the Name on user click
+        /// </summary>
+        public bool Decaf
+        {
+            get
+            {
+                return decaf;
+            }
+            set
+            {
+                decaf = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Decaf"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the RoomForCream property
+        /// </summary>
+        private bool roomForCream = false;
+
+        /// <summary>
+        /// Interactive logic for if RoomForCream should be included
+        ///     with the cowboy coffee   
+        ///     
+        /// Updates the RoomForCream and the Special Instruction list on user click
+        /// </summary>
+        public bool RoomForCream
+        {
+            get
+            {
+                return roomForCream;
+            }
+            set
+            {
+                roomForCream = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RoomForCream"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+        
+        /// <summary>
+        /// The special instructions for preparing the cowboy coffee
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -83,13 +151,13 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class with the size</returns>
         public override string ToString()
         {
             if (Decaf) return Size.ToString() + " Decaf Cowboy Coffee";
-            else return Size.ToString() + " Cowboy Coffee";
+            return Size.ToString() + " Cowboy Coffee";
         }
     }
 }

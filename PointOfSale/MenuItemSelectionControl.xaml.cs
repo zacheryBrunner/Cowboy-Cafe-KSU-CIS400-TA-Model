@@ -101,7 +101,7 @@ namespace PointOfSale
                     }
                     //Set the datacontext of the screen to the item and set the items screen property equal to the screen
                     screen.DataContext = item;
-                    item.screen = screen;
+                    item.Screen = screen;
                     
                     //Add the item to the order and swap the screen
                     data.Add(item);
@@ -158,7 +158,7 @@ namespace PointOfSale
                     }
                     //Set the datacontext of the screen to the item and set the items screen property equal to the screen
                     screen.DataContext = item;
-                    item.screen = screen;
+                    item.Screen = screen;
 
                     //Add the item to the order and swap the screen
                     data.Add(item);
@@ -219,7 +219,7 @@ namespace PointOfSale
                     }
                     //Set the datacontext of the screen to the item and set the items screen property equal to the screen
                     screen.DataContext = item;
-                    item.screen = screen;
+                    item.Screen = screen;
 
                     //Add the item to the order and swap the screen
                     data.Add(item);

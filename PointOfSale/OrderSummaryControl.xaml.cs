@@ -43,7 +43,7 @@ namespace PointOfSale
 
             //Weird base case here where if you delete the last item while the customization screen is still up it crashes and dies
             if (i != null)
-                elem = (FrameworkElement)i.screen;
+                elem = (FrameworkElement)i.Screen;
             else
                 elem = new MenuItemSelectionControl();
 

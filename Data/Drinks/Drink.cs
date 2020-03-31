@@ -1,7 +1,7 @@
 ﻿/*
  * Author: Zachery Brunner
  * Class: Drink.cs
- * Purpose: Base class for drinks served by the cowboy-cafe
+ * Purpose: A base class representing a drink
  */
 using System.Collections.Generic;
 using CowboyCafe.Data.Enums;
@@ -10,6 +10,21 @@ namespace CowboyCafe.Data.Drinks
 {
     public abstract class Drink : IOrderItem
     {
+        /// <summary>
+        /// Allows the reciept to bind to the ToString method
+        /// </summary>
+        public virtual string Name => ToString();
+       
+        /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public virtual object Screen { get; set; }
+
+        /// <summary>
+        /// Gets,sets the size of the drink, default is small
+        /// </summary>  
+        public virtual Size Size { get; set; } = Size.Small;
+
         /// <summary>
         /// Gets the price of the drink
         /// </summary>
@@ -21,11 +36,6 @@ namespace CowboyCafe.Data.Drinks
         public abstract uint Calories { get; }
 
         /// <summary>
-        /// The is the screen associated with the IOrderItem
-        /// </summary>
-        public object screen { get; set; }
-
-        /// <summary>
         /// Used to represent whether ice should be included in the drink
         /// </summary>
         public abstract bool Ice { get; set; }
@@ -34,10 +44,5 @@ namespace CowboyCafe.Data.Drinks
         /// Gets the ingredients of the drink
         /// </summary>
         public abstract List<string> SpecialInstructions { get; }
-
-        /// <summary>
-        /// Gets,sets the size of the drink, default is small
-        /// </summary>  
-        public virtual Size Size { get; set; } = Size.Small;
     }
 }

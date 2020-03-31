@@ -12,18 +12,28 @@ namespace CowboyCafe.Data
     public interface IOrderItem
     {
         /// <summary>
+        /// Allows the reciept to bind to the ToString method
+        /// </summary>
+        public virtual string Name => ToString();
+
+        /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public object Screen { get; set; }
+
+        /// <summary>
         /// Gets the price of the item
         /// </summary>
         public double Price { get; }
 
         /// <summary>
-        /// The is the screen associated with the IOrderItem
+        /// Gets the calories of the entree
         /// </summary>
-        public object screen { get; set; }
+        public uint Calories { get; }
 
         /// <summary>
         /// Gets the list of special instructions for the current item
         /// </summary>
-        List<string> SpecialInstructions { get; }
+        public List<string> SpecialInstructions { get; }
     }
 }

@@ -3,14 +3,22 @@
  * Class: Entree.cs
  * Purpose: A base class representing an entree
  */
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CowboyCafe.Data.Entrees
 {
     public abstract class Entree : IOrderItem
     {
+        /// <summary>
+        /// Allows the reciept to bind to the ToString method
+        /// </summary>
+        public virtual string Name => ToString();
+
+        /// <summary>
+        /// The is the screen associated with the IOrderItem
+        /// </summary>
+        public virtual object Screen { get; set; }
+
         /// <summary>
         /// Gets the price of the side
         /// </summary>
@@ -20,11 +28,6 @@ namespace CowboyCafe.Data.Entrees
         /// Gets the calories of the entree
         /// </summary>
         public abstract uint Calories { get; }
-
-        /// <summary>
-        /// The is the screen associated with the IOrderItem
-        /// </summary>
-        public object screen { get; set; }
 
         /// <summary>
         /// Gets the special instructions for the entree

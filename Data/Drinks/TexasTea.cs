@@ -1,33 +1,26 @@
 ﻿/*
  * Author: Zachery Brunner
  * Class: TexasTea.cs
- * Purpose: A drink option offered by the cowboy cafe
+ * Purpose: Model for the Texas Tea menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+
 using CowboyCafe.Data.Enums;
 
 namespace CowboyCafe.Data.Drinks
 {
-    public class TexasTea : Drink
+    public class TexasTea : Drink, INotifyPropertyChanged
     {
         /// <summary>
-        /// Should Ice be included in the Texas Tea
+        /// This event will be invoked when a property is changed
         /// </summary>
-        public override bool Ice { get; set; } = true;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Should the Texas Tea be sweet
-        /// </summary>
-        public bool Sweet { get; set; } = true;
-
-        /// <summary>
-        /// Should the Texas Tea come with a lemon
-        /// </summary>
-        public bool Lemon { get; set; } = false;
-
-        /// <summary>
-        /// Price property for Texas Tea
+        /// Texas Tea Price - Based on size
         /// </summary>
         public override double Price
         {
@@ -48,7 +41,7 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Calories property for Texas Tea
+        /// Texas Tea Calorie Count - Based on size
         /// </summary>
         public override uint Calories
         {
@@ -77,7 +70,82 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Creates a list of special instructions for the texas tea
+        /// Private backing variable for the Ice property
+        /// </summary>
+        private bool ice = true;
+
+        /// <summary>
+        /// Interactive logic for if ice should be included
+        ///     with the texas tea   
+        ///     
+        /// Updates the Ice and the Special Instruction list on user click
+        /// </summary>
+        public override bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Sweet property
+        /// </summary>
+        private bool sweet = true;
+
+        /// <summary>
+        /// Interactive logic for if sweet should be included
+        ///     with the cowboy coffee   
+        ///     
+        /// Updates the Sweet and the Name on user click
+        /// </summary>
+        public bool Sweet
+        {
+            get
+            {
+                return sweet;
+            }
+            set
+            {
+                sweet = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sweet"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Lemon property
+        /// </summary>
+        private bool lemon = false;
+
+        /// <summary>
+        /// Interactive logic for if lemon should be included
+        ///     with the cowboy coffee   
+        ///     
+        /// Updates the Lemon and the Special Instruction list on user click
+        /// </summary>
+        public bool Lemon
+        {
+            get
+            {
+                return lemon;
+            }
+            set
+            {
+                lemon = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lemon"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// The special instructions for preparing the texas tea
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -90,10 +158,14 @@ namespace CowboyCafe.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// Overrides the ToString method
+        /// </summary>
+        /// <returns>String representation of the class with the size</returns>
         public override string ToString()
         {
             if (Sweet) return Size.ToString() + " Texas Sweet Tea";
-            else return Size.ToString() + " Texas Plain Tea";
+            return Size.ToString() + " Texas Plain Tea";
         }
     }
 }

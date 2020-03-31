@@ -89,7 +89,7 @@ namespace CowboyCafe.Data.Entrees
                 return instructions;
             }
         }
-
+        
         /// <summary>
         /// Overrides the ToString method
         /// </summary>

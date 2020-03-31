@@ -1,28 +1,26 @@
 ﻿/*
  * Author: Zachery Brunner
  * Class: JerkedSoda.cs
- * Purpose: Represents a drink option that the cowboy cafe has
+ * Purpose: Model for the Jerked Soda menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+
 using CowboyCafe.Data.Enums;
 
 namespace CowboyCafe.Data.Drinks
 {
-    public class JerkedSoda : Drink
+    public class JerkedSoda : Drink, INotifyPropertyChanged
     {
         /// <summary>
-        /// Flavor enum used to determine the flavor the drink should be
+        /// This event will be invoked when a property is changed
         /// </summary>
-        public SodaFlavor Flavor { get; set; } = SodaFlavor.CreamSoda;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Used to represent if the drink should be served with ice
-        /// </summary>
-        public override bool Ice { get; set; } = true;
-
-        /// <summary>
-        /// Returns the price of the size of the jerked soda
+        /// Jerked Soda Price - Based on size
         /// </summary>
         public override double Price 
         { 
@@ -43,7 +41,7 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Returns the calories for the size of the drink
+        /// Jerked Soda Calorie Count - Based on size
         /// </summary>
         public override uint Calories
         {
@@ -64,7 +62,37 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Creates a list of special instructions for the Jerked soda
+        /// Flavor enum used to determine the flavor the drink should be
+        /// </summary>
+        public SodaFlavor Flavor { get; set; } = SodaFlavor.CreamSoda;
+
+        /// <summary>
+        /// Private backing variable for the Ice property
+        /// </summary>
+        private bool ice = true;
+
+        /// <summary>
+        /// Interactive logic for if ice should be included
+        ///     with the jerked soda  
+        ///     
+        /// Updates the Ice and the Special Instruction list on user click
+        /// </summary>
+        public override bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// The special instructions for preparing the Jerked soda
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -76,7 +104,7 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class with the size and flavor</returns>
         public override string ToString()
@@ -84,21 +112,31 @@ namespace CowboyCafe.Data.Drinks
             string flavor;
             switch(Flavor)
             {
+                /* Birch Beer */
                 case SodaFlavor.BirchBeer:
                     flavor = "Birch Beer";
-                    break;
+                break;
+
+                /* Cream Soda */
                 case SodaFlavor.CreamSoda:
                     flavor = "Cream Soda";
-                    break;
+                break;
+
+                /* Orange Soda */
                 case SodaFlavor.OrangeSoda:
                     flavor = "Orange Soda";
-                    break;
+                break;
+
+                /* Root Beer */
                 case SodaFlavor.RootBeer:
                     flavor = "Root Beer";
-                    break;
+                break;
+
+                /* Sarsparilla */
                 case SodaFlavor.Sarsparilla:
                     flavor = "Sarsparilla";
-                    break;
+                break;
+                
                 default:
                     throw new NotImplementedException("Unknown flavor");
             }

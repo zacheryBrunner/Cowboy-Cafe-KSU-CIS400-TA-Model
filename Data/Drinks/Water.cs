@@ -1,36 +1,83 @@
 ﻿/*
  * Author: Zachery Brunner
  * Class: Water.cs
- * Purpose: A drink option offered by the cowboy cafe
+ * Purpose: Model for the Cowboy Coffee menu item
+ *      Includes: Interactive logic for XAML pages using the INotifyPropertyChanged
  */
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CowboyCafe.Data.Drinks
 {
-    public class Water : Drink
+    public class Water : Drink, INotifyPropertyChanged
     {
         /// <summary>
-        /// Should the drink be served with Lemon?
+        /// This event will be invoked when a property is changed
         /// </summary>
-        public bool Lemon { get; set; } = false;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Used to represent if the drink should be served with ice
-        /// </summary>
-        public override bool Ice { get; set; } = true;
-
-        /// <summary>
-        /// The price of the drink
+        /// Water Price
         /// </summary>
         public override double Price { get { return DrinkInformation.WATER_PRICE; } }
 
         /// <summary>
-        /// The number of calories the drink has
+        /// Water Calories
         /// </summary>
         public override uint Calories { get { return DrinkInformation.WATER_CALORIES; } }
 
         /// <summary>
-        /// Creates a list of special instructions for the water
+        /// Private backing variable for the Ice property
+        /// </summary>
+        private bool ice = true;
+
+        /// <summary>
+        /// Interactive logic for if ice should be included
+        ///     with the water  
+        ///     
+        /// Updates the Ice and the Special Instruction list on user click
+        /// </summary>
+        public override bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// Private backing variable for the Lemon property
+        /// </summary>
+        private bool lemon = false;
+
+        /// <summary>
+        /// Interactive logic for if lemon should be included
+        ///     with the water
+        ///     
+        /// Updates the Lemon and the Special Instruction list on user click
+        /// </summary>
+        public bool Lemon
+        {
+            get
+            {
+                return lemon;
+            }
+            set
+            {
+                lemon = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lemon"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            }
+        }
+
+        /// <summary>
+        /// The special instructions for preparing the water
         /// </summary>
         public override List<string> SpecialInstructions
         {
@@ -44,7 +91,7 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
-        /// Overrides the toString method
+        /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class with the size</returns>
         public override string ToString()
