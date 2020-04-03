@@ -156,7 +156,7 @@
 
             <!--Drink Buttons-->
             <Button x:Name="CowboyCoffeeButton"
-                    Content="Cowboy&#x0a;Coffe"
+                    Content="Cowboy&#x0a;Coffee"
                     Click="addDrinkToList"/>
 
             <Button x:Name="JerkedSodaButton"

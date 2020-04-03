@@ -33,9 +33,15 @@
                   IsChecked="{Binding Path=Ice}"/>
 
         <!--Flavor-->
-        <local:FlavorChangingScreen Grid.Row="2"/>
-
+        <Border x:Name="FlavorBorder"
+                Grid.Row="2">
+            <local:FlavorChangingScreen/>
+        </Border>
+        
         <!--Size-->
-        <local:SizeChangingCustomization Grid.Row="3"/>
+        <Border x:Name="SizeBorder"
+                Grid.Row="3">
+            <local:SizeChangingCustomization/>
+        </Border>
     </Grid>
 </UserControl>

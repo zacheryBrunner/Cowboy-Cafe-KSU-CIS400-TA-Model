@@ -55,7 +55,7 @@
             </Grid.ColumnDefinitions>
 
             <!--This list box holds the items currently on the order-->
-            <ListView x:Name="OrderListView"
+            <ListBox x:Name="OrderListView"
                   Grid.Column="0"
                   Background="#906b53" 
                   Foreground="#5DADEC"
@@ -63,7 +63,7 @@
                   SelectionChanged="OrderListView_SelectionChanged">
 
                 <!--This is where you define what each item should look like-->
-                <ListView.ItemTemplate>
+                <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <!--I break the items into two sections. 
@@ -131,8 +131,8 @@
                             </Grid>
                         </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
             <!--We are still in row 1
                 This is where the price list on the rightside comes into play-->

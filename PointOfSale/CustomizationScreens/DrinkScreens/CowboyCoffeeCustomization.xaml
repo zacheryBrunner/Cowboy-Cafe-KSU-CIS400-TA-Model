@@ -47,6 +47,9 @@
                   IsChecked="{Binding Path=Decaf}"/>
 
         <!--Size-->
-        <local:SizeChangingCustomization Grid.Row="4"/>
+        <Border x:Name="SizeBorder"
+                Grid.Row="4">
+            <local:SizeChangingCustomization/>
+        </Border>
     </Grid>
 </UserControl>

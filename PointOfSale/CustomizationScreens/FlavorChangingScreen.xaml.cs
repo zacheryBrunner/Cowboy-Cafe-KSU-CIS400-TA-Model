@@ -48,7 +48,7 @@ namespace PointOfSale.CustomizationScreens
                 break;
 
                 /* Birch Beer */
-                case "SizeRadioButtonBB":
+                case "FlavorRadioButtonBB":
                     s = SodaFlavor.BirchBeer;
                 break;
 

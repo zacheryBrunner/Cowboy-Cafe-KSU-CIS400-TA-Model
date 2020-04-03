@@ -39,6 +39,9 @@
                   IsChecked="{Binding Path=Lemon}"/>
 
         <!--Size-->
-        <local:SizeChangingCustomization Grid.Row="3"/>
+        <Border x:Name="SizeBorder"
+                Grid.Row="3">
+            <local:SizeChangingCustomization/>
+        </Border>
     </Grid>
 </UserControl>

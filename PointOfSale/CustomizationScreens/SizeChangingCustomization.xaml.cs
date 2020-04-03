@@ -24,6 +24,41 @@ namespace PointOfSale.CustomizationScreens
             InitializeComponent();
         }
 
+
+        public void setButton()
+        {
+            Size s;
+            if(DataContext is Drink)
+            {
+                Drink d = (Drink)DataContext;
+                s = d.Size;
+            }
+            else if(DataContext is Side)
+            {
+                Side si = (Side)DataContext;
+                s = si.Size;
+            }
+            else
+            {
+                throw new NotImplementedException("Should never be reached");
+            }
+
+            switch(s)
+            {
+                case Size.Small:
+                    SizeRadioButtonSmall.IsChecked = true;
+                    break;
+                case Size.Medium:
+                    SizeRadioButtonMedium.IsChecked = true;
+                    break;
+                case Size.Large:
+                    SizeRadioButtonLarge.IsChecked = true;
+                    break;
+                default:
+                    throw new NotImplementedException("Should never be reached");
+            }
+        }
+
         /// <summary>
         /// Responsible for changing the size of the datacontext or menu item
         /// </summary>

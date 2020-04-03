@@ -66,7 +66,7 @@
             </Grid.RowDefinitions>
 
             <!--Birch beer-->
-            <RadioButton x:Name="SizeRadioButtonBB" 
+            <RadioButton x:Name="FlavorRadioButtonBB" 
                      Grid.Row="1"
                      GroupName="Flavor" 
                      Content="BIRCH BEER"
