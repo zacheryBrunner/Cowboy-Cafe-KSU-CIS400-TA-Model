@@ -15,12 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Pictures\CartoonCowboy.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Pictures\WildWestSaloon.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Reference Include="CashRegister">
+      <HintPath>..\CashRegister.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

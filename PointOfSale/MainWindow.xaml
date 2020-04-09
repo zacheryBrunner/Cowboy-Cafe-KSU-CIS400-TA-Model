@@ -12,6 +12,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="760" Width="1000">
     <Grid>
-        <local:OrderControl/>
+        <Border x:Name="Container">
+            <local:OrderControl/>
+        </Border>
     </Grid>
 </Window>

@@ -1,6 +1,6 @@
 ﻿/*
  * Author: Nathan Bean
- * Class: ExtensionMethods
+ * Class: ExtensionMethods.cs
  * Purpose: Switches screens
 */
 using System.Windows;
@@ -10,6 +10,12 @@ namespace PointOfSale.ExtensionMethods
 {
     public static class ExtensionMethods
     {
+        /// <summary>
+        /// Finds the control passed to the function
+        /// </summary>
+        /// <typeparam name="T">Some control</typeparam>
+        /// <param name="element"></param>
+        /// <returns>The control we were looking for when found</returns>
         public static T FindAncestor<T>(this DependencyObject element) where T : DependencyObject
         {
             var parent = VisualTreeHelper.GetParent(element);

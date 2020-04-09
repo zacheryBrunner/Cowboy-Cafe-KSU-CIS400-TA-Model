@@ -1,0 +1,826 @@
+﻿<!--
+Author: Zachery Brunner
+Class: TransactionControl.xaml
+Purpose: Manages the transaction part of the program-->
+<UserControl x:Class="PointOfSale.TransactionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale"
+             mc:Ignorable="d" 
+             Height="650" Width="1000">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="2">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Coins -->
+                <!-- Pennies -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="0"/>
+                <TextBlock x:Name="PennyTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="Pennies"/>
+
+                <TextBlock x:Name="NumberOfPenniesTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=Pennies}"/>
+
+                <Button x:Name="PennyIncrementButton"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="PennyDecrementButton"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Nickels -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="1"/>
+                <TextBlock x:Name="NickelTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="Nickels"/>
+
+                <TextBlock x:Name="NumberOfNickelsTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=Nickels}"/>
+
+                <Button x:Name="NickelIncrementButton"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="NickelDecrementButton"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Dimes -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="2"/>
+                <TextBlock x:Name="DimesTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="Dimes"/>
+
+                <TextBlock x:Name="NumberOfDimesTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=Dimes}"/>
+
+                <Button x:Name="DimesIncrementButton"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="DimesDecrementButton"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Quarters -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="3"/>
+                <TextBlock x:Name="QuartersTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="3"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="Quarters"/>
+
+                <TextBlock x:Name="NumberOfQuartersTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="3"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=Quarters}"/>
+
+                <Button x:Name="QuarterIncrementButton"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="QuartersDecrementButton"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Half Dollar Coins -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="4"/>
+                <TextBlock x:Name="HDTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="4"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="Half Dollars"/>
+
+                <TextBlock x:Name="NumberOfHDTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="4"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=HalfDollars}"/>
+
+                <Button x:Name="HDIncrementButton"
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="HDDecrementButton"
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Dollar Coins -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Grid.Column="5"/>
+                <TextBlock x:Name="DTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="5"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="Dollar Coins"/>
+
+                <TextBlock x:Name="NumberOfDTextBlock"
+                       Grid.Row="0"
+                       Grid.Column="5"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=DollarCoins}"/>
+
+                <Button x:Name="DIncrementButton"
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="DDecrementButton"
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Dollars -->
+                <!-- Ones -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="0"/>
+                <TextBlock x:Name="OnesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$1 Bills"/>
+
+                <TextBlock x:Name="NumberOfOnesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=OneBill}"/>
+
+                <Button x:Name="OnesIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="OnesDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Twos -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock x:Name="TwosTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$2 Bills"/>
+
+                <TextBlock x:Name="NumberOfTwosTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=TwoBill}"/>
+
+                <Button x:Name="TwosIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="TwosDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Fives -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="2"/>
+                <TextBlock x:Name="FivesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$5 Bills"/>
+
+                <TextBlock x:Name="NumberOfFivesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=FiveBill}"/>
+
+                <Button x:Name="FivesIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="FivesDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Tens -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="3"/>
+                <TextBlock x:Name="TensTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="3"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$10 Bills"/>
+
+                <TextBlock x:Name="NumberOfTensTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="3"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=TenBill}"/>
+
+                <Button x:Name="TensIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="TensDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Twenty -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="4"/>
+                <TextBlock x:Name="TwentiesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="4"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$20 Bills"/>
+
+                <TextBlock x:Name="NumberOfTwentiesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="4"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=TwentyBill}"/>
+
+                <Button x:Name="TwentiesIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="TwentiesDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Fifties -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="5"/>
+                <TextBlock x:Name="FiftiesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="5"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$50 Bills"/>
+
+                <TextBlock x:Name="NumberOfFiftiesTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="5"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=FiftyBill}"/>
+
+                <Button x:Name="FiftiesIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="FiftiesDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+
+                <!-- Hundred -->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Grid.Column="6"/>
+                <TextBlock x:Name="HundredsTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="6"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       
+                       Text="$100 Bills"/>
+
+                <TextBlock x:Name="NumberOfHundredsTextBlock"
+                       Grid.Row="1"
+                       Grid.Column="6"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       
+                       Text="{Binding Path=HundredBill}"/>
+
+                <Button x:Name="HundredsIncrementButton"
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    
+                    Height="100"
+                    Width="53"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    
+                    Content="+"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="IncrementClick"/>
+
+                <Button x:Name="HundredsDecrementButton"
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    
+                    Height="100"
+                    Width="54"
+                    
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    
+                    Content="-"
+                    FontFamily="Cambria"
+                    FontSize="20"
+                    Click="DecrementClick"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel x:Name="ItemsStackPanel">
+                    <ListBox x:Name="ItemsListBox"/>
+                </StackPanel>
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock x:Name="SubtotalTextBlock"
+                               Grid.Row="1"
+                       
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                       
+                               Text="Subtotal: "/>
+
+                    <TextBlock x:Name="TaxTextBlock"
+                               
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               
+                               Text="Tax"/>
+                </StackPanel>
+
+                <TextBlock x:Name="Total"
+                           
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           
+                           Text="Total: "/>
+
+
+
+                <StackPanel
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom">
+                    <TextBlock Text="Paid: "/>
+
+                    <TextBlock x:Name="AmountLeftToTenderText"
+                               Text="Remaining: "/>
+
+
+                </StackPanel>
+
+
+                <StackPanel
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Path=Subtotal, StringFormat=c}"/>
+
+                    <TextBlock Text="{Binding Path=Tax, StringFormat=c}"/>
+                </StackPanel>
+
+                <TextBlock 
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    
+                    Text="{Binding Path=TotalWithTax, StringFormat=c}"/>
+
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom">
+                    <TextBlock Text="{Binding Path=Paid, StringFormat=c}"/>
+                    <TextBlock Text="{Binding Path=AmountLeftToTender, StringFormat=c}"/>
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <StackPanel>
+                    <Button x:Name="PaybyCardButton"
+                            
+                            HorizontalAlignment="Stretch"
+                            
+                            FontSize="20"
+                            Height="40"
+                            
+                            Margin="0 10 0 0"
+                            Content="Pay by Card"
+                            
+                            Click="PaybyCardButton_Click"/>
+
+                    <Button x:Name="CompleteCashButton"
+                            
+                            HorizontalAlignment="Stretch"
+                            
+                            FontSize="20"
+                            Height="40"
+                            
+                            Margin="0 10 0 0"
+                            Content="Cash Payment"
+                            
+                            Click="CompleteCashButton_Click"/>
+
+                    <Button x:Name="CancelButton"
+                            
+                            HorizontalAlignment="Stretch"
+                            
+                            FontSize="20"
+                            Height="40"
+                            
+                            Margin="0 10 0 0"
+                            Content="Cancel Transaction"
+                            
+                            Click="CancelButton_Click"/>
+
+                    <TextBlock x:Name="ErrorText"
+                               
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Bottom"
+                               
+                               FontSize="25"
+                               Text="Error: None"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

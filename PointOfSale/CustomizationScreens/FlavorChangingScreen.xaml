@@ -20,14 +20,10 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <!--Flavor Label-->
-                <RowDefinition/>
-                <!--Cream Soda-->
-                <RowDefinition/>
-                <!--Orange Soda-->
-                <RowDefinition/>
-                <!--Sarsparilla-->
+                <RowDefinition/> <!--Flavor Label-->
+                <RowDefinition/> <!--Cream Soda-->
+                <RowDefinition/> <!--Orange Soda-->
+                <RowDefinition/> <!--Sarsparilla-->
             </Grid.RowDefinitions>
 
             <!--Cream Soda-->
@@ -55,14 +51,10 @@
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <!--Flavor Label-->
-                <RowDefinition/>
-                <!--Birch Beer-->
-                <RowDefinition/>
-                <!--Root Beer-->
-                <RowDefinition/>
-                <!--Left blank for symmetry-->
+                <RowDefinition/> <!--Flavor Label-->
+                <RowDefinition/> <!--Birch Beer-->
+                <RowDefinition/> <!--Root Beer-->
+                <RowDefinition/> <!--Left blank for symmetry-->
             </Grid.RowDefinitions>
 
             <!--Birch beer-->

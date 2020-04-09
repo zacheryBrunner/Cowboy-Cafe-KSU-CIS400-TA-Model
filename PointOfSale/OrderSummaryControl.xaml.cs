@@ -1,4 +1,8 @@
-﻿
+﻿/*
+ * Author: Zachery Brunner
+ * Class: OrderSummaryControl.xaml.cs
+ * Purpose: Displays the everything related to the order
+ */
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,13 +16,19 @@ namespace PointOfSale
     /// </summary>
     public partial class OrderSummaryControl : UserControl
     {
-
-
+        /// <summary>
+        /// Public constructor
+        /// </summary>
         public OrderSummaryControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Deleted the specified item from the order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteItemButton_Click(object sender, RoutedEventArgs e)
         {
             Order o = (Order)DataContext;
@@ -26,6 +36,11 @@ namespace PointOfSale
             o.Remove(i);
         }
 
+        /// <summary>
+        /// Switches the screen to the selected item in the order list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrderListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FrameworkElement elem;

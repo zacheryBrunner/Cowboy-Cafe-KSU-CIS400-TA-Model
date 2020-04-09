@@ -16,6 +16,9 @@ using Size = CowboyCafe.Data.Enums.Size;
 using SodaFlavor = CowboyCafe.Data.Enums.SodaFlavor;
 
 using PointOfSale.CustomizationScreens;
+using PointOfSale.ExtensionMethods;
+
+using CashRegister;
 
 namespace PointOfSale
 {
@@ -24,11 +27,15 @@ namespace PointOfSale
     /// </summary>
     public partial class OrderControl : UserControl
     {
+        CashDrawer cd;
+
         public OrderControl()
         {
+            InitializeComponent();
+
             var o = new Order(1);
             DataContext = o;
-            InitializeComponent();
+            cd = new CashDrawer();
         }
 
         /// <summary>
@@ -38,8 +45,20 @@ namespace PointOfSale
         /// <param name="e"></param>
         private void CompleteOrderButton_Click(object sender, RoutedEventArgs e)
         {
+            /* Get the current order's items */
             Order o = (Order)DataContext;
-            DataContext = new Order(o.OrderNumber + 1);
+            IOrderItem[] io = (IOrderItem[])o.Items;
+            
+            /* Check to make sure there is a transaction available */
+            if (io.Length != 0)
+            {
+                MainWindow mw = this.FindAncestor<MainWindow>();
+                mw.Container.Child = new TransactionControl(cd, this);
+
+
+                /* Make new order */
+                DataContext = new Order(o.OrderNumber + 1);
+            }
         }
 
         /// <summary>
@@ -74,7 +93,7 @@ namespace PointOfSale
         }
 
         /// <summary>
-        /// This is a substitution to binding the enums, This should probably be split into 2 methods. Im just lazy and this works
+        /// Gets the information required to change the sizes
         /// </summary>
         /// <param name="element"></param>
         /// <returns>Updated Framework element</returns>
@@ -93,30 +112,31 @@ namespace PointOfSale
                 /* Jerked soda has a flavor so we need to see if the datacontext is a jerked soda */
                 if (d is JerkedSoda)
                 {
+                    /*
+                     * Step 1: Cast the element to a JerkedSodaCustomization FrameworkElement
+                     * Step 2: Get the FlavorBorder's child
+                     * Step 3: Cast the child to a FlavorChangingScreen
+                     * Step 4: Set the specific radio button per the case to true
+                     * Step 5: Break
+                     */
+                    FlavorChangingScreen fcs = (FlavorChangingScreen)(((JerkedSodaCustomization)element).FlavorBorder.Child);
+
                     switch (((JerkedSoda)element.DataContext).Flavor)
                     {
                         case SodaFlavor.OrangeSoda:
-                            
-                            /*
-                             * Step 1: Cast the element to a JerkedSodaCustomization FrameworkElement
-                             * Step 2: Get the FlavorBorder's child
-                             * Step 3: Cast the child to a FlavorChangingScreen
-                             * Step 4: Set the specific radio button per the case to true
-                             * Step 5: Break
-                             */
-                            ((FlavorChangingScreen)((JerkedSodaCustomization)element).FlavorBorder.Child).FlavorRadioButtonOS.IsChecked = true; break;
+                            fcs.FlavorRadioButtonOS.IsChecked = true; break;
 
                         case SodaFlavor.CreamSoda:
-                            ((FlavorChangingScreen)((JerkedSodaCustomization)element).FlavorBorder.Child).FlavorRadioButtonCS.IsChecked = true; break;
+                            fcs.FlavorRadioButtonCS.IsChecked = true; break;
 
                         case SodaFlavor.Sarsparilla:
-                            ((FlavorChangingScreen)((JerkedSodaCustomization)element).FlavorBorder.Child).FlavorRadioButtonS.IsChecked = true; break;
+                            fcs.FlavorRadioButtonS.IsChecked = true; break;
 
                         case SodaFlavor.BirchBeer:
-                            ((FlavorChangingScreen)((JerkedSodaCustomization)element).FlavorBorder.Child).FlavorRadioButtonBB.IsChecked = true; break;
+                            fcs.FlavorRadioButtonBB.IsChecked = true; break;
 
                         case SodaFlavor.RootBeer:
-                            ((FlavorChangingScreen)((JerkedSodaCustomization)element).FlavorBorder.Child).FlavorRadioButtonRB.IsChecked = true; break;
+                            fcs.FlavorRadioButtonRB.IsChecked = true; break;
 
                         default:
                             throw new NotImplementedException("Should never be reached");
@@ -137,60 +157,16 @@ namespace PointOfSale
                      *  I would still encourage you continue reading to fully understand what I have done :)
                      */
                     case "CowboyCoffee":
-                        switch (s)
-                        {
-                            case Size.Small:
-                                ((SizeChangingCustomization)((CowboyCoffeeCustomization)element).SizeBorder.Child).SizeRadioButtonSmall.IsChecked = true; break;
-                            case Size.Medium:
-                                ((SizeChangingCustomization)((CowboyCoffeeCustomization)element).SizeBorder.Child).SizeRadioButtonMedium.IsChecked = true; break;
-                            case Size.Large:
-                                ((SizeChangingCustomization)((CowboyCoffeeCustomization)element).SizeBorder.Child).SizeRadioButtonLarge.IsChecked = true; break;
-                            default:
-                                throw new NotImplementedException("Should never be reached");
-                        }
-                        break;
+                        setSize(((SizeChangingCustomization)((CowboyCoffeeCustomization)element).SizeBorder.Child), s); break;
 
                     case "JerkedSoda":
-                        switch (s)
-                        {
-                            case Size.Small:
-                                ((SizeChangingCustomization)((JerkedSodaCustomization)element).SizeBorder.Child).SizeRadioButtonSmall.IsChecked = true; break;
-                            case Size.Medium:
-                                ((SizeChangingCustomization)((JerkedSodaCustomization)element).SizeBorder.Child).SizeRadioButtonMedium.IsChecked = true; break;
-                            case Size.Large:
-                                ((SizeChangingCustomization)((JerkedSodaCustomization)element).SizeBorder.Child).SizeRadioButtonLarge.IsChecked = true; break;
-                            default:
-                                throw new NotImplementedException("Should never be reached");
-                        }
-                        break;
+                        setSize(((SizeChangingCustomization)((JerkedSodaCustomization)element).SizeBorder.Child), s); break;
 
                     case "TexasTea":
-                        switch (s)
-                        {
-                            case Size.Small:
-                                ((SizeChangingCustomization)((TexasTeaCustomization)element).SizeBorder.Child).SizeRadioButtonSmall.IsChecked = true; break;
-                            case Size.Medium:
-                                ((SizeChangingCustomization)((TexasTeaCustomization)element).SizeBorder.Child).SizeRadioButtonMedium.IsChecked = true; break;
-                            case Size.Large:
-                                ((SizeChangingCustomization)((TexasTeaCustomization)element).SizeBorder.Child).SizeRadioButtonLarge.IsChecked = true; break;
-                            default:
-                                throw new NotImplementedException("Should never be reached");
-                        }
-                        break;
+                        setSize(((SizeChangingCustomization)((TexasTeaCustomization)element).SizeBorder.Child), s); break;
 
                     case "Water":
-                        switch (s)
-                        {
-                            case Size.Small:
-                                ((SizeChangingCustomization)((WaterCustomization)element).SizeBorder.Child).SizeRadioButtonSmall.IsChecked = true; break;
-                            case Size.Medium:
-                                ((SizeChangingCustomization)((WaterCustomization)element).SizeBorder.Child).SizeRadioButtonMedium.IsChecked = true; break;
-                            case Size.Large:
-                                ((SizeChangingCustomization)((WaterCustomization)element).SizeBorder.Child).SizeRadioButtonLarge.IsChecked = true; break;
-                            default:
-                                throw new NotImplementedException("Should never be reached");
-                        }
-                        break;
+                        setSize(((SizeChangingCustomization)((WaterCustomization)element).SizeBorder.Child), s); break;
 
                     default:
                         throw new NotImplementedException("Should never be reached");
@@ -198,24 +174,31 @@ namespace PointOfSale
             }
 
             else if (element.DataContext is Side)
-            {
-                Size s = ((Side)element.DataContext).Size;
-                switch (s)
-                {
-                    case Size.Small: ((SizeChangingCustomization)element).SizeRadioButtonSmall.IsChecked = true; break;
-
-                    case Size.Medium: ((SizeChangingCustomization)element).SizeRadioButtonMedium.IsChecked = true; break;
-
-                    case Size.Large: ((SizeChangingCustomization)element).SizeRadioButtonLarge.IsChecked = true; break;
-
-                    default: throw new NotImplementedException("Should never be reached");
-                }
-            }
+                setSize((SizeChangingCustomization)element, ((Side)element.DataContext).Size);
 
             else
                 throw new NotImplementedException("Should never be reached");
 
             return element;
+        }
+
+        /// <summary>
+        /// Does the actual setting of the sizes
+        /// </summary>
+        /// <param name="scc">The size screen associated with the order item</param>
+        /// <param name="s">The size it needs to be set to</param>
+        private void setSize(SizeChangingCustomization scc, Size s)
+        {
+            switch (s)
+            {
+                case Size.Small: scc.SizeRadioButtonSmall.IsChecked = true; break;
+
+                case Size.Medium: scc.SizeRadioButtonMedium.IsChecked = true; break;
+
+                case Size.Large: scc.SizeRadioButtonLarge.IsChecked = true; break;
+
+                default: throw new NotImplementedException("Should never be reached");
+            }
         }
     }
 }

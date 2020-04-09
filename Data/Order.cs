@@ -6,10 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-using CowboyCafe.Data.Drinks;
-using CowboyCafe.Data.Sides;
-using Size = CowboyCafe.Data.Enums.Size;
-
 namespace CowboyCafe.Data
 {
     public class Order : INotifyPropertyChanged
@@ -104,35 +100,6 @@ namespace CowboyCafe.Data
             items.Remove(i);
             itemPrices.RemoveAt(index);
             InvokePropertyChanged();
-        }
-
-        /// <summary>
-        /// This method assists in updating the subtotal for changing sizes
-        /// </summary>
-        /// <param name="i">The item</param>
-        /// <param name="new_size">The size the item is suppose to be</param>
-        public void subtotalHelperFunction(IOrderItem i, Size new_size)
-        {
-            Side s;
-            Drink d;
-
-            Subtotal -= i.Price;
-            if (i is Side)
-            {
-                s = (Side)i;
-                s.Size = new_size;
-                Subtotal += s.Price;
-            }
-            else
-            {
-                d = (Drink)i;
-                d.Size = new_size;
-                Subtotal += d.Price;
-            }
-            itemPrices.RemoveAt(itemPrices.Count - 1);
-
-            string priceOfItemAsCurrency = String.Format("{0:C}", i.Price);
-            itemPrices.Add(priceOfItemAsCurrency);
         }
 
         /// <summary>
