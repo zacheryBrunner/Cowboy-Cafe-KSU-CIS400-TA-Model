@@ -33,12 +33,12 @@ namespace PointOfSale
         /// <summary>
         /// Instance of the cash drawer, passed into the constructor
         /// </summary>
-        CashDrawer cd;
+        private CashDrawer cd;
 
         /// <summary>
         /// The order control we need to switch back to
         /// </summary>
-        OrderControl oc;
+        private OrderControl oc;
 
         /// <summary>
         /// Holds the Previous Order Number so we can set it later
@@ -46,27 +46,47 @@ namespace PointOfSale
         private uint PrevOrderNumber { get; set; } = 0;
 
         /// <summary>
+        /// Private backing variable for Subtotal property
+        /// </summary>
+        private double subtotal;
+
+        /// <summary>
         /// The pre-total of the order
         /// </summary>
-        public double Subtotal { get; private set; } = 0;
+        public double Subtotal { get { return Math.Round(subtotal, 2); } private set { subtotal = Math.Round(value, 2); } }
+
+        /// <summary>
+        /// Private backing variable for Tax property
+        /// </summary>
+        private double tax;
 
         /// <summary>
         /// The tax amount for the order
         /// </summary>
-        public double Tax { get; private set; } = 0;
+        public double Tax { get { return Math.Round(tax, 2); } private set { tax = Math.Round(value, 2); } }
+
+        /// <summary>
+        /// Private backing variable for TotalWithTaxProperty
+        /// </summary>
+        private double totalWithTax;
 
         /// <summary>
         /// The final total including tax
         /// </summary>
-        public double TotalWithTax { get; private set; } = 0;
+        public double TotalWithTax { get { return Math.Round(totalWithTax, 2); } private set { totalWithTax = Math.Round(value, 2); } }
+
+        /// <summary>
+        /// Private backing variable for Paid property
+        /// </summary>
+        private double paid;
 
         /// <summary>
         /// How much has the consumer paid?
         /// </summary>
-        public double Paid { get; private set; } = 0;
+        public double Paid { get { return Math.Round(paid, 2); } private set { paid = Math.Round(value, 2); } }
 
         /// <summary>
-        /// Private backing variable used to fix my mistakes
+        /// Private backing variable for AmountLeftToTender Property
         /// </summary>
         private double amountLeftToTender;
 
@@ -76,9 +96,14 @@ namespace PointOfSale
         public double AmountLeftToTender { get { return Math.Round(amountLeftToTender, 2); } private set { amountLeftToTender = Math.Round(value, 2); } }
 
         /// <summary>
+        /// Private backing variable for Change Property
+        /// </summary>
+        private double change;
+
+        /// <summary>
         /// How much change is needed if customer paid with cash
         /// </summary>
-        private double Change { get; set; }
+        public double Change { get { return Math.Round(change, 2); } private set { change = Math.Round(value, 2); } }
 
         /// <summary>
         /// These are the coins that are allowed to be processed in the system
@@ -123,8 +148,9 @@ namespace PointOfSale
         /// <param name="cd">The cash drawer for the program</param>
         public TransactionControl(CashDrawer cd, OrderControl o)
         {
-            DataContext = this;
+            DataContext = this;         /* Set Datacontext so xaml can read variables */
             InitializeComponent();
+            
             oc = o;
             Order or = (Order)o.DataContext;
 
@@ -139,9 +165,9 @@ namespace PointOfSale
             Items = or.Items;
 
             /* Do some quick maffs */
-            Subtotal = Math.Round(or.Subtotal, 2);
-            Tax = Math.Round(Subtotal * .16, 2);
-            TotalWithTax = Math.Round(Subtotal + Tax, 2);
+            Subtotal = or.Subtotal;
+            Tax = Subtotal * .16;
+            TotalWithTax = Subtotal + Tax;
             
             /* How much do we need to charge the customer? */
             AmountLeftToTender = TotalWithTax;
@@ -155,18 +181,17 @@ namespace PointOfSale
         }
 
         /// <summary>
-        /// Populates the stack panel
+        /// Populates the stack panel with all order items
         /// </summary>
         private void PopulateItemsStackPanel()
         {
             foreach(IOrderItem i in Items)
             {
-                string s = i.ToString() + "\t " + i.Price;
+                string s = i.ToString() + "\t " + i.Price.ToString("C2");
                 ItemsListBox.Items.Add(s);
+                
                 foreach(string str in i.SpecialInstructions)
-                {
                     ItemsListBox.Items.Add(str);
-                }
             }
         }
 
@@ -217,19 +242,23 @@ namespace PointOfSale
 
                 case ResultCode.InsufficentFunds:
                     PaybyCardButton.IsEnabled = false;
+                    MessageBox.Show("Error: No funds on card\n\tCard button is being disabled!!!");
                     ErrorText.Text = "Error: No funds";
                     break;
 
                 case ResultCode.CancelledCard:
                     PaybyCardButton.IsEnabled = false;
+                    MessageBox.Show("Error: Cancelled Card\n\tCard button is being disabled!!!");
                     ErrorText.Text = "Error: Card Cancelled";
                     break;
 
                 case ResultCode.ReadError:
+                    MessageBox.Show("Error: Card Read Error!!!\n\tPlease try swiping card again!!!");
                     ErrorText.Text = "Error: Read Error";
                     break;
 
                 case ResultCode.UnknownErrror:
+                    MessageBox.Show("Error: Unknown Error\n\tPlease try swiping card again!!!");
                     ErrorText.Text = "Error: Unknown";
                     break;
 
@@ -246,6 +275,8 @@ namespace PointOfSale
         /// <param name="e"></param>
         private void IncrementClick(object sender, RoutedEventArgs e)
         {
+            /* Money is being given disable cards */
+            PaybyCardButton.IsEnabled = false;
             double value = 0;
 
             /* Switch on the button name to find out which was pressed */
@@ -465,7 +496,7 @@ namespace PointOfSale
                     if (FiveBill != 0)
                     {
                         FiveBill -= 1;
-                    value = 5;
+                        value = 5;
                         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FiveBill"));
                     }
                     else
@@ -477,7 +508,7 @@ namespace PointOfSale
                     if (TenBill != 0)
                     {
                         TenBill -= 1;
-                    value = 10;
+                        value = 10;
                         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TenBill"));
                     }
                     else
@@ -527,6 +558,11 @@ namespace PointOfSale
             }
             Paid -= value;
             AmountLeftToTender += value;
+            
+            /* If all money has been given back to consumer go ahead and reenable card button */
+            if (Paid == 0)
+                PaybyCardButton.IsEnabled = true;
+
             UpdateProperties();
         }
 
@@ -652,9 +688,6 @@ namespace PointOfSale
 
             /* Print the receipt */
             PrintReceipt(1);
-
-            /* Set the new order */
-            SetNewOrder();
         }
 
         /// <summary>
@@ -671,24 +704,31 @@ namespace PointOfSale
                 result = c + 1;
                 switch (result)
                 {
+                    /* Nickels */
                     case Coins.Nickel:
                         quantity = cd.Nickels;
-                        break;
+                    break;
 
+                    /* Dimes */
                     case Coins.Dime:
                         quantity = cd.Dimes;
-                        break;
+                    break;
 
+                    /* Quarters */
                     case Coins.Quarter:
                         quantity = cd.Quarters;
-                        break;
+                    break;
 
+                    /* Half Dollas */
                     case Coins.HalfDollar:
                         quantity = cd.HalfDollars;
-                        break;
+                    break;
 
+                    /* Dolla Coins */
                     case Coins.Dollar:
                         quantity = cd.Dollars;
+
+                        /* If no dolla coins are availible go to bills */
                         if(quantity == 0)
                         {
                             if (cd.Ones > 0)
@@ -699,9 +739,7 @@ namespace PointOfSale
                                 quantity = 0;
                             }
                             else
-                            {
                                 BalanceBills(Bills.One);
-                            }
                         }
                         break;
 
@@ -865,7 +903,6 @@ namespace PointOfSale
             List<Bills> ListOfBillsGiven = new List<Bills>();
             List<Coins> ListOfCoinsGiven = new List<Coins>();
 
-
             /* Get all the coin enums and put them in reverse order */
             Coins[] coins = (Coins[])Enum.GetValues(typeof(Coins));
             Array.Reverse(coins);
@@ -937,6 +974,7 @@ namespace PointOfSale
                         BalanceBills(b);
                     ChangeNeeded -= value;
                     cd.RemoveBill(b, 1);
+                    ListOfBillsGiven.Add(b);
                     quantity--;
                 }
             }
@@ -998,9 +1036,12 @@ namespace PointOfSale
                         BalanceCoins(c);
                     ChangeNeeded -= value;
                     cd.RemoveCoin(c, 1);
+                    ListOfCoinsGiven.Add(c);
                     quantity--;
                 }
             }
+
+            ShowChange(ListOfBillsGiven, ListOfCoinsGiven);
 
             if(cd.Ones > 100)
             {
@@ -1019,47 +1060,64 @@ namespace PointOfSale
             }
         }
 
+        private void ShowChange(List<Bills> b, List<Coins> c)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("This is the change needed to give back!!!\n");
+
+            foreach(Bills bi in b)
+                sb.Append(bi.ToString() + "\n");
+
+            foreach (Coins co in c)
+                sb.Append(co.ToString() + "\n");
+
+            MessageBox.Show(sb.ToString());
+        }
+
         /// <summary>
         /// Creates the reciept to be sent to the printer
         /// </summary>
         /// <param name="cardOrCash">0 if card 1 if cash</param>
         private void PrintReceipt(int cardOrCash)
         {
-
             ReceiptPrinter rp = new ReceiptPrinter();
             StringBuilder sb = new StringBuilder();
             sb.Append("---------- COWBOY CAFE ----------\n");
             sb.Append(DateTime.Now + "\n");
             sb.Append("Order #: " + PrevOrderNumber + "\n");
             
+            /* Iterate over all items */
             foreach(IOrderItem i in Items)
             {
-                sb.Append(i.ToString() + "\t\t" + i.Price + "\n");
+                sb.Append(i.ToString() + "\t\t" + i.Price.ToString("C2") + "\n");
+                
+                /* Iterate through the special instruction for the item i */
                 foreach(string s in i.SpecialInstructions)
-                {
                     sb.Append(s + "\n");
-                }
+
                 sb.Append("\n");
             }
 
-            sb.Append("Subtotal: " + Subtotal + "\n");
-            sb.Append("Tax: " + Tax + "\n");
-            sb.Append("Total: " + TotalWithTax + "\n\n");
+            sb.Append("Subtotal: " + Subtotal.ToString("C2") + "\n");
+            sb.Append("Tax: " + Tax.ToString("C2") + "\n");
+            sb.Append("Total: " + TotalWithTax.ToString("C2") + "\n\n");
 
             if(cardOrCash == 1)
             {
-                sb.Append("Paid: " + Paid + "\n");
-                sb.Append("Change: " + Change + "\n");
+                sb.Append("Paid: " + Paid.ToString("C2") + "\n");
+                sb.Append("Change: " + Change.ToString("C2") + "\n");
             }
             else
             {
-                sb.Append("Credit Card was used!");
+                sb.Append("Credit Card was used!\n");
             }
 
             string sr = sb.ToString();
             MessageBox.Show(sr);
             rp.Print(sr);
             ShowDrawerContents();
+            SetNewOrder();
         }
 
         /// <summary>
@@ -1086,7 +1144,7 @@ namespace PointOfSale
             sb.Append("Fifties: " + cd.Fifties + "\n");
             sb.Append("Hundreds: " + cd.Hundreds + "\n\n");
 
-            sb.Append("Total in Drawer : " + cd.TotalValue);
+            sb.Append("Total in Drawer : " + cd.TotalValue.ToString("C2"));
 
             MessageBox.Show(sb.ToString());
         }
