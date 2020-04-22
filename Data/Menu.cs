@@ -8,6 +8,8 @@ using CowboyCafe.Data.Entrees;
 using CowboyCafe.Data.Drinks;
 using CowboyCafe.Data.Sides;
 
+using Size = CowboyCafe.Data.Enums.Size;
+
 namespace CowboyCafe.Data
 {
     public static class Menu
@@ -54,10 +56,21 @@ namespace CowboyCafe.Data
             List<IOrderItem> sides = new List<IOrderItem>();
 
             /* Add all of the sides */
-            sides.Add(new BakedBeans());
-            sides.Add(new ChiliCheeseFries());
-            sides.Add(new PanDeCampo());
-            sides.Add(new CornDodgers());
+            sides.Add(new BakedBeans(Size.Small));
+            sides.Add(new BakedBeans(Size.Medium));
+            sides.Add(new BakedBeans(Size.Large));
+
+            sides.Add(new ChiliCheeseFries(Size.Small)); 
+            sides.Add(new ChiliCheeseFries(Size.Medium));
+            sides.Add(new ChiliCheeseFries(Size.Large));
+
+            sides.Add(new PanDeCampo(Size.Small));
+            sides.Add(new PanDeCampo(Size.Medium));
+            sides.Add(new PanDeCampo(Size.Large));
+
+            sides.Add(new CornDodgers(Size.Small));
+            sides.Add(new CornDodgers(Size.Medium));
+            sides.Add(new CornDodgers(Size.Large));
 
             return sides;
         }
@@ -71,9 +84,18 @@ namespace CowboyCafe.Data
             List<IOrderItem> drinks = new List<IOrderItem>();
 
             /* Add all of the drinks */
-            drinks.Add(new CowboyCoffee());
-            drinks.Add(new JerkedSoda());
-            drinks.Add(new TexasTea());
+            drinks.Add(new CowboyCoffee(Size.Small));
+            drinks.Add(new CowboyCoffee(Size.Medium));
+            drinks.Add(new CowboyCoffee(Size.Large));
+
+            drinks.Add(new JerkedSoda(Size.Small));
+            drinks.Add(new JerkedSoda(Size.Medium));
+            drinks.Add(new JerkedSoda(Size.Large));
+
+            drinks.Add(new TexasTea(Size.Small));
+            drinks.Add(new TexasTea(Size.Medium));
+            drinks.Add(new TexasTea(Size.Large));
+
             drinks.Add(new Water());
 
             return drinks;

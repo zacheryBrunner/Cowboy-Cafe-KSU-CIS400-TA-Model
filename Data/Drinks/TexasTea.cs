@@ -166,6 +166,20 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
+        /// Implicit constructor
+        /// </summary>
+        public TexasTea() { }
+
+        /// <summary>
+        /// Constructor that allows size initialization on creation
+        /// </summary>
+        /// <param name="s">Size of item</param>
+        public TexasTea(Size s)
+        {
+            this.Size = s;
+        }
+
+        /// <summary>
         /// The special instructions for preparing the texas tea
         /// </summary>
         public override List<string> SpecialInstructions

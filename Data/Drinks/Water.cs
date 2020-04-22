@@ -100,6 +100,20 @@ namespace CowboyCafe.Data.Drinks
         }
 
         /// <summary>
+        /// Implicit constructor
+        /// </summary>
+        public Water() { }
+
+        /// <summary>
+        /// Constructor that allows size initialization on creation
+        /// </summary>
+        /// <param name="s">Size of item</param>
+        public Water(Size s)
+        {
+            this.Size = s;
+        }
+
+        /// <summary>
         /// The special instructions for preparing the water
         /// </summary>
         public override List<string> SpecialInstructions

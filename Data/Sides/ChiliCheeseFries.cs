@@ -82,6 +82,20 @@ namespace CowboyCafe.Data.Sides
         }
 
         /// <summary>
+        /// Implicit constructor
+        /// </summary>
+        public ChiliCheeseFries() { }
+
+        /// <summary>
+        /// Constructor that allows size initialization on creation
+        /// </summary>
+        /// <param name="s">Size of item</param>
+        public ChiliCheeseFries(Size s)
+        {
+            this.Size = s;
+        }
+
+        /// <summary>
         /// Overrides the ToString method
         /// </summary>
         /// <returns>String representation of the class with the size</returns>

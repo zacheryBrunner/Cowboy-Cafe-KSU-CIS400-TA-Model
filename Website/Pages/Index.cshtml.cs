@@ -22,7 +22,6 @@ namespace Website.Pages
         public IEnumerable<IOrderItem> Menu { get; protected set; }
 
 
-        [BindProperty]
         public string[] typeOfItems { get; set; }
 
         /// <summary>
@@ -71,9 +70,9 @@ namespace Website.Pages
             this.PriceMax = PriceMax;
 
             SearchTerms = Request.Query["SearchTerms"];
-            typeOfItems = Request.Query["typeOfItems"];
+            this.typeOfItems = Request.Query["typeOfItems"];
 
-            if(typeOfItems.Length == 0)
+            if(this.typeOfItems.Length == 0)
             {
                 typeOfItems = new string[]
                 {

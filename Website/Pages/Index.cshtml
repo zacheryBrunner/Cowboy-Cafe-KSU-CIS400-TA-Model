@@ -30,15 +30,14 @@
 
 
         <div id="filters">
-            <h3>Types Of Items</h3>
+            <h3>Types Of Items (Nothing checked, shows all items)</h3>
             @foreach (string s in CowboyCafe.Data.Menu.TypeOfItems)
             {
                 <label>
-                    <input type="checkbox" name="typeOfItems" value="@s" checked/>
+                    <input type="checkbox" name="typeOfItems" value="@s" checked="@Model.typeOfItems.Contains(s)"/>
                     @s
                 </label>
             }
-
 
             <h3>Calories</h3>
             <div>

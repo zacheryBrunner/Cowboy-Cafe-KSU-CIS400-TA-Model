@@ -156,7 +156,21 @@ namespace CowboyCafe.Data.Drinks
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
             }
         }
-        
+
+        /// <summary>
+        /// Implicit constructor
+        /// </summary>
+        public CowboyCoffee() { }
+
+        /// <summary>
+        /// Constructor that allows size initialization on creation
+        /// </summary>
+        /// <param name="s">Size of item</param>
+        public CowboyCoffee(Size s)
+        {
+            this.Size = s;
+        }
+
         /// <summary>
         /// The special instructions for preparing the cowboy coffee
         /// </summary>
